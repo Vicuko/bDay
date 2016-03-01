@@ -45,6 +45,7 @@ group :development, :test do
   gem 'capybara'
   gem 'paperclip'
   gem 'pry-rails'
+  gem 'devise'
 end
 
 group :test do
