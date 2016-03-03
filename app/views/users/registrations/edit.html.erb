@@ -15,17 +15,21 @@
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
   </div>
-    <div class="field">
+  <div class="field">
     <%= f.label :Cumpleaños %><br />
     <%= f.date_field :bday, autofocus: true %>
   </div>
-      <div class="field">
+  <div class="field">
     <%= f.label :Ciudad %><br />
     <%= f.text_field :city, autofocus: true %>
   </div>
-      <div class="field">
+  <div class="field">
     <%= f.label :País %><br />
     <%= f.text_field :country, autofocus: true %>
+  </div>
+    <div class="field">
+    <%= f.label :Género %><br />
+    <%= f.select :gender, [['Hombre',1],['Mujer',0]] %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
