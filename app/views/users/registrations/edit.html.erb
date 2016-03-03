@@ -4,8 +4,28 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :Nombre %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :Apellidos %><br />
+    <%= f.text_field :sirname, autofocus: true %>
+  </div>
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
+  </div>
+    <div class="field">
+    <%= f.label :Cumpleaños %><br />
+    <%= f.date_field :bday, autofocus: true %>
+  </div>
+      <div class="field">
+    <%= f.label :Ciudad %><br />
+    <%= f.text_field :city, autofocus: true %>
+  </div>
+      <div class="field">
+    <%= f.label :País %><br />
+    <%= f.text_field :country, autofocus: true %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
