@@ -1,0 +1,32 @@
+<section class="container-fluid searchbox" >
+	<div class="row searchbox" style="background-color:rgba(255,146,0,0.1);">
+		<article class="col-xs-4 searchcolumn">
+			<nav class="navbar-default" style="background-color:transparent">
+								<%= button_to 'HOME', root_path, :action => 'get', :method => 'get', class: 'btn btn-default btn-sm tpnt_button pull-left'%>	
+			</nav>
+		</article>
+		<article class="col-xs-3 col-xs-offset-1 searchcolumn">
+			<%= link_to image_tag("logo.png", size: "100"), '/', size: "10px", class: 'top_image img-responsive center-block' %>
+		</article>
+			
+		<% if user_signed_in? %>
+		
+			<article class="col-xs-4 searchcolumn">
+				<%= button_to 'Sign out', destroy_user_session_path, :action => 'destroy', :method => 'delete', class: 'btn btn-danger btn-sm text-capitalize btn-primary pull-right'%>
+
+				<%= button_to 'Profile', edit_user_registration_path, :action => 'get', :method => 'get', class: 'btn btn-success btn-sm text-capitalize btn-primary pull-right'%>
+
+			</article>
+
+
+		<% else %>
+
+			<article class="col-xs-4 searchcolumn">
+
+				<%= button_to 'Sign Up', new_user_registration_path, :action => 'get', :method => 'get', class: 'btn btn-success btn-sm text-capitalize btn-primary pull-right'%>
+				<%= button_to 'Sign in', new_user_session_path, :action => 'get', :method => 'get', class: 'btn btn-default btn-sm text-capitalize btn-primary pull-right'%>
+
+			</article>
+
+		<% end %>
+	</div>
