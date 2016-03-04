@@ -1,0 +1,45 @@
+<h2>Profile <%= resource_name.to_s.humanize %></h2>
+
+<section>
+  <h4>Nombre:</h4>
+  <span type="text" class="form-control"><%= current_user.name %></span>
+</section>
+
+<section>
+  <h4>Apellidos:</h4>
+  <span type="text" class="form-control"><%= current_user.sirname %></span>
+</section>
+
+<section>
+  <h4>Email:</h4>
+  <span type="email" class="form-control"><%= current_user.email %></span>
+</section>
+
+<section>
+  <h4>Cumpleaños:</h4>
+  <span type="date" class="form-control"><%= current_user.bday %></span>
+</section>
+
+<section>
+  <h4>Ciudad:</h4>
+  <span type="text" class="form-control"><%= current_user.city %></span>
+</section>
+
+<section>
+  <h4>País:</h4>
+  <span type="text" class="form-control"><%= current_user.country %></span>
+</section>
+
+<section>
+  <h4>Idioma:</h4>
+  <span type="text" class="form-control"><%= current_user.language %></span>
+</section>
+
+<section>
+  <h4>Género:</h4>
+  <span type="text" class="form-control"><%= current_user.gender ? "Hombre" : "Mujer" %></span>
+</section>
+
+<%= button_to 'Editar', edit_user_registration_path, :action => 'get', :method => 'get', class: 'btn btn-default btn-sm tpnt_button pull-left'%>
+
+<%= button_to "Back", :back,class: 'btn btn-default btn-sm tpnt_button pull-left'%>

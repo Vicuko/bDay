@@ -27,6 +27,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
      super
    end
 
+
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
   # in to be expired now. This is useful if the user wants to
@@ -50,11 +51,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
    def after_sign_up_path_for(resource)
-     super(resource)
+     "/users/show"
    end
 
   # The path used after sign up for inactive accounts.
    def after_inactive_sign_up_path_for(resource)
      super(resource)
    end
+
 end

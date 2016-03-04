@@ -14,7 +14,7 @@
 			<article class="col-xs-4 searchcolumn">
 				<%= button_to 'Sign out', destroy_user_session_path, :action => 'destroy', :method => 'delete', class: 'btn btn-danger btn-sm text-capitalize btn-primary pull-right'%>
 
-				<%= button_to 'Profile', edit_user_registration_path, :action => 'get', :method => 'get', class: 'btn btn-success btn-sm text-capitalize btn-primary pull-right'%>
+				<%= button_to 'Profile', show_user_registration_path, :action => 'get', :method => 'get', class: 'btn btn-success btn-sm text-capitalize btn-primary pull-right'%>
 
 			</article>
 
