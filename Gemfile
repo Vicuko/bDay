@@ -25,6 +25,14 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 
 gem 'puma'
+
+gem 'omniauth-facebook'
+
+gem 'omniauth-twitter'
+
+gem 'omniauth-google'
+
+gem 'omniauth-gplus', '~> 2.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
