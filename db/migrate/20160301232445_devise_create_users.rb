@@ -5,10 +5,11 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # Additional fields
       t.string :name, null: false, default:""
       t.string :sirname, null: false, default:""
-      t.string :FB, null: false, default:""
-      t.string :TW, null: false, default:""
-      t.string :GPLUS, null: false, default:""
-      t.date :bday, null: false, default:"01/01/1900"
+      t.string :city, null: false, default:""
+      t.string :country, null: false, default:""
+      t.string :gender, null: false, default:""
+      t.string :language, null: false, default:"es"
+      t.date :bday, null: false, default:"01/01/2000"
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""
