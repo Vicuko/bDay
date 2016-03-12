@@ -31,10 +31,12 @@ ActiveRecord::Schema.define(version: 20160305163524) do
     t.string   "uid",                         null: false
     t.string   "token",                       null: false
     t.string   "expiry_date",                 null: false
-    t.boolean  "expires?",    default: true,  null: false
+    t.boolean  "expires",     default: true,  null: false
     t.string   "email",       default: "",    null: false
+    t.string   "password",    default: "",    null: false
     t.string   "image",       default: "",    null: false
     t.boolean  "verified",    default: false
+    t.string   "gender",      default: "m",   null: false
     t.string   "timezone"
     t.string   "language",    default: "es"
     t.datetime "created_at",                  null: false
@@ -45,7 +47,7 @@ ActiveRecord::Schema.define(version: 20160305163524) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   default: "",           null: false
-    t.string   "sirname",                default: "",           null: false
+    t.string   "surname",                default: "",           null: false
     t.string   "city",                   default: "",           null: false
     t.string   "country",                default: "",           null: false
     t.string   "gender",                 default: "",           null: false

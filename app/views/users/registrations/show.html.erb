@@ -7,7 +7,7 @@
 
 <section>
   <h4>Apellidos:</h4>
-  <span type="text" class="form-control"><%= current_user.sirname %></span>
+  <span type="text" class="form-control"><%= current_user.surname %></span>
 </section>
 
 <section>
@@ -37,12 +37,20 @@
 
 <section>
   <h4>Género:</h4>
-  <span type="text" class="form-control"><%= current_user.gender ? "Hombre" : "Mujer" %></span>
+  <span type="text" class="form-control">
+    <%= case current_user.gender
+      when "m"
+        return "Hombre"
+      when "f"
+        return "Mujer"
+      when "u"
+        return "Indefinido"
+      end%></span>
 </section>
 
-<%= link_to image_tag("FB.svg", size: "50"), user_omniauth_authorize_path(:facebook), size: "10px" %>
-<%= link_to image_tag("TW.svg", size: "50"), user_omniauth_authorize_path(:facebook), size: "10px" %>
-<%= link_to image_tag("GG.svg", size: "50"), user_omniauth_authorize_path(:facebook), size: "10px" %>
+<%= link_to image_tag("FB.svg", size: "50",class: "social_login"), user_omniauth_authorize_path(:facebook), size: "10px" %>
+<%= link_to image_tag("TW.svg", size: "50", class: "social_login"), user_omniauth_authorize_path(:facebook), size: "10px" %>
+<%= link_to image_tag("GG.svg", size: "50", class: "social_login"), user_omniauth_authorize_path(:facebook), size: "10px" %>
 
 <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
 

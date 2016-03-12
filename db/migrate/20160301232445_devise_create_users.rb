@@ -4,7 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       # Additional fields
       t.string :name, null: false, default:""
-      t.string :sirname, null: false, default:""
+      t.string :surname, null: false, default:""
       t.string :city, null: false, default:""
       t.string :country, null: false, default:""
       t.string :gender, null: false, default:""

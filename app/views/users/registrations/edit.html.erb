@@ -9,7 +9,7 @@
   </div>
   <div class="field">
     <%= f.label :Apellidos %><br />
-    <%= f.text_field :sirname, autofocus: true %>
+    <%= f.text_field :surname, autofocus: true %>
   </div>
   <div class="field">
     <%= f.label :email %><br />
@@ -33,7 +33,7 @@
   </div>
     <div class="field">
     <%= f.label :Género %><br />
-    <%= f.select :gender, [['Hombre',1],['Mujer',0]] %>
+    <%= f.select :gender, [['Hombre',"m"],['Mujer',"f"],['Indefinido',"u"]] %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

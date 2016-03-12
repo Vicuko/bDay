@@ -14,7 +14,7 @@
 20.times do |n|
 	User.create(
 		name: Faker::Name.first_name,
-		sirname: Faker::Name.last_name,
+		surname: Faker::Name.last_name,
 		city: Faker::Address.city,
 		country: Faker::Address.country,
 		gender: Faker::Boolean.boolean,
@@ -29,5 +29,8 @@ end
 		user_id: n,
 		relationship_id: n+1
 		)
-
+	Relationship.create(
+		user_id: n,
+		relationship_id: n+2
+		)
 end
