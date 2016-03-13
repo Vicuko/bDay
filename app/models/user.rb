@@ -28,14 +28,17 @@ class User < ActiveRecord::Base
     User.find_by(email: email).id
   end
 
-  def self.persona_find_or_create(auth)
-    if SocialNetwork.social_network_uid_exists?(auth.uid)
-      SocialNetwork.what_social_network_user_id?(auth.uid)
+  def self.persona_find_or_create(*args)
+    uid = args[0] || 0
+    email = args[1] || ""
+    name = args[2] || ""
+    surname = args[3] || ""
+    
+    if SocialNetwork.social_network_uid_exists?(uid)
+      SocialNetwork.what_social_network_user_id?(uid)
+    
     else
-      User.find_or_create_by(email: auth.info.email).id do |nuser|
-        nuser.name = auth.info.first_name
-        nuser.surname = auth.info.last_name
-      end
+      User.create_with(name: name,surname: surname).find_or_create_by(email: email).id
     end
   end
 

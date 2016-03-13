@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20160305163524) do
     t.string   "password",    default: "",    null: false
     t.string   "image",       default: "",    null: false
     t.boolean  "verified",    default: false
-    t.string   "gender",      default: "m",   null: false
+    t.string   "gender",      default: "u",   null: false
     t.string   "timezone"
     t.string   "language",    default: "es"
     t.datetime "created_at",                  null: false

@@ -5,7 +5,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if user_signed_in?
       id = current_user.id
     else
-      id = User.persona_find_or_create(auth)
+      name = auth.info.first_name || auth.info.name.split[0] || ""
+      sirname = auth.info.last_name || auth.info.name.split[1..-1].join(" ") || "" 
+      id = User.persona_find_or_create(auth.uid,auth.info.email,name, sirname)
     end
 
     @user = SocialNetwork.from_omniauth_fb(id,auth)
@@ -24,16 +26,18 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if user_signed_in?
       id = current_user.id
     else
-      id = User.persona_find_or_create(auth)
+      name = auth.info.first_name || auth.info.name.split[0] || ""
+      sirname = auth.info.last_name || auth.info.name.split[1..-1].join(" ") || "" 
+      id = User.persona_find_or_create(auth.uid,auth.info.email,name, sirname)
     end
 
-    @user = SocialNetwork.from_omniauth_fb(id,auth)
+    @user = SocialNetwork.from_omniauth_tw(id,auth)
 
     if @user.persisted?
       sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
       set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
     else
-      session["devise.facebook_data"] = request.env["omniauth.auth"]
+      session["devise.twitter_data"] = request.env["omniauth.auth"]
       redirect_to show_user_registration_path
     end
   end
