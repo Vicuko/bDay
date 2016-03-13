@@ -247,6 +247,7 @@ Devise.setup do |config|
       :authorize_params => {
         :lang => 'es'
       }
+    }
   # config.omniauth :google, '1575211679471592', '08b78c1d3abfe0e9c67e83bf6763d785', scope: 'public_profile,email,user_friends,user_birthday,publish_actions', display: 'popup'
 
   # ==> Warden configuration
