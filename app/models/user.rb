@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
-         :omniauthable, :omniauth_providers => [:facebook, :twitter, :google, :gplus]  
+         :omniauthable, :omniauth_providers => [:facebook, :twitter, :google_oauth2]  
 
 
   def self.persona_mail_exists?(email)

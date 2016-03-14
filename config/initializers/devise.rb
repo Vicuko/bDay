@@ -248,7 +248,9 @@ Devise.setup do |config|
         :lang => 'es'
       }
     }
-  config.omniauth :gplus, '888574492154-2ojvl3ek1m05kuufsun5qgd56ej1cfa0.apps.googleusercontent.com', 'kKCBmrc0EV-lS-l47cwrw8cb', scope: 'plus.login, gmail.send, userinfo.email, userinfo.profile, contacts.readonly, user.birthday.read', request_visible_actions: 'AddActivity,BuyActivity'
+  config.omniauth :google_oauth2, '888574492154-2ojvl3ek1m05kuufsun5qgd56ej1cfa0.apps.googleusercontent.com', 'kKCBmrc0EV-lS-l47cwrw8cb', {
+    scope: 'plus.login, gmail.send, userinfo.email, userinfo.profile, contacts.readonly, user.birthday.read'
+    }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

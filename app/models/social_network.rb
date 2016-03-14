@@ -60,10 +60,9 @@ class SocialNetwork < ActiveRecord::Base
 	    		persona.email = auth.info.email || ""
 	    		persona.password = Devise.friendly_token[0,20] || ""
 	    		persona.image = auth.info.image || ""
-	    		persona.verified = auth.info.verified || ""
+	    		persona.verified = auth.extra.raw_info.email_verified || ""
 	    		gender = auth.extra.raw_info.gender || "u"
 	    		persona.gender = gender[0]
-	    		persona.timezone = auth.extra.raw_info.timezone || 0
 	    		persona.language = auth.extra.raw_info.locale || "es"
 			end
     	return User.find_by(id:id)
