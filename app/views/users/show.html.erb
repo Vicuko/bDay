@@ -2,50 +2,50 @@
 
 <section>
   <h4>Nombre:</h4>
-  <span type="text" class="form-control"><%= current_user.name %></span>
+  <span type="text" class="form-control"><%= resource.name %></span>
 </section>
 
 <section>
   <h4>Apellidos:</h4>
-  <span type="text" class="form-control"><%= current_user.surname %></span>
+  <span type="text" class="form-control"><%= resource.surname %></span>
 </section>
 
 <section>
   <h4>Email:</h4>
-  <span type="email" class="form-control"><%= current_user.email %></span>
+  <span type="email" class="form-control"><%= resource.email %></span>
 </section>
 
 <section>
   <h4>Cumpleaños:</h4>
-  <span type="date" class="form-control"><%= current_user.bday %></span>
+  <span type="date" class="form-control"><%= resource.bday %></span>
 </section>
 
 <section>
   <h4>Ciudad:</h4>
-  <span type="text" class="form-control"><%= current_user.city %></span>
+  <span type="text" class="form-control"><%= resource.city %></span>
 </section>
 
 <section>
   <h4>País:</h4>
-  <span type="text" class="form-control"><%= current_user.country %></span>
+  <span type="text" class="form-control"><%= resource.country %></span>
 </section>
 
 <section>
   <h4>Idioma:</h4>
-  <span type="text" class="form-control"><%= current_user.language %></span>
+  <span type="text" class="form-control"><%= resource.language %></span>
 </section>
 
 <section>
   <h4>Género:</h4>
   <span type="text" class="form-control">
-    <%= case current_user.gender
+    <%= case (resource.gender)
       when "m"
-        return "Hombre"
+        "Hombre"
       when "f"
-        return "Mujer"
+        "Mujer"
       when "u"
-        return "Indefinido"
-      end%></span>
+        "Indefinido"
+      end %></span>
 </section>
 
 <%= link_to image_tag("FB.svg", size: "50",class: "social_login"), user_omniauth_authorize_path(:facebook), size: "10px" %>
