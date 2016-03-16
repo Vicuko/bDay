@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   root to: 'site#index'
   devise_for :users, controllers: { registrations: "users/registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
-  get '/users/show', to: 'users#show', as: "show_user"  
+  get '/users/show', to: 'users#show', as: "show_user"
+  get '/users/edit_profile', to: 'users#edit', as: "edit_user"
+  patch '/users/edit_profile', to: 'users#update'
+  put '/users/edit_profile', to: 'users#update'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

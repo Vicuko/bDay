@@ -1,0 +1,48 @@
+<h2>Editar Perfil</h2>
+
+<%= form_for(resource, as: resource_name, url: edit_user_path(resource_name), html: { method: :put }) do |f| %>
+
+  <div class="field">
+    <%= f.label :Nombre %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :Apellidos %><br />
+    <%= f.text_field :surname, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :Cumpleaños %><br />
+    <%= f.date_field :bday, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :Ciudad %><br />
+    <%= f.text_field :city, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :País %><br />
+    <%= f.text_field :country, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :Idioma %><br />
+    <%= f.text_field :language, autofocus: true %>
+  </div>
+  <div class="field">
+    <%= f.label :Género %><br />
+    <%= f.select :gender, [['Hombre',"m"],['Mujer',"f"],['Indefinido',"u"]] %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Guardar" %>
+  </div>
+  <% end %>
+  <span>
+    <%= link_to 'Modificar contraseña', edit_user_registration_path %>
+  </span>
+
+  <h3>Dar de baja mi cuenta</h3>
+
+  <p>¿No estás content@? <%= button_to "Dar de baja", registration_path(resource_name), data: { confirm: "¿Estás segur@?" }, method: :delete %></p>
