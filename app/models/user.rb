@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable,
          :omniauthable, :omniauth_providers => [:facebook, :twitter, :google_oauth2]  
 
-
   def self.persona_mail_exists?(email)
     User.find_by!(email: email).present?
     rescue ActiveRecord::RecordNotFound
