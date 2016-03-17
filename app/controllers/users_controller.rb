@@ -17,7 +17,6 @@ before_action :authenticate_user!
 	      end
 	end
 
-
 private
 	def user_params
       params.require(:user).permit(:name, :surname, :email, :bday, :city, :country, :language, :gender)

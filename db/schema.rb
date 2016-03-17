@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20160305163524) do
     t.string   "gender",                 default: "",           null: false
     t.string   "language",               default: "es",         null: false
     t.date     "bday",                   default: '2000-01-01', null: false
+    t.boolean  "signed_up",              default: false,        null: false
     t.string   "email",                  default: "",           null: false
     t.string   "encrypted_password",     default: "",           null: false
     t.string   "reset_password_token"

@@ -1,6 +1,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
  before_filter :configure_sign_up_params, only: [:create]
  before_filter :configure_account_update_params, only: [:update]
+ include UsersHelper
 
   # GET /resource/sign_up
    def new
@@ -24,7 +25,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
    def destroy
-     super
+    binding.pry
+    user_unsign_up
+    Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+    flash[:notice] = "Account succesfully cancelled"
+    redirect_to root_path
+    # yield resource if block_given?
+    # respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
    end
 
 

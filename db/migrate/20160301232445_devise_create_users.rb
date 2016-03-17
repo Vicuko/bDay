@@ -10,6 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :gender, null: false, default:""
       t.string :language, null: false, default:"es"
       t.date :bday, null: false, default:"01/01/2000"
+      t.boolean :signed_up, null: false, default: false
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""
