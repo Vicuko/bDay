@@ -11,16 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160305163524) do
+ActiveRecord::Schema.define(version: 20160318160459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "messages", force: :cascade do |t|
+    t.integer  "relationship_id"
+    t.string   "message",                         null: false
+    t.string   "message_url",                     null: false
+    t.boolean  "send_email",      default: false, null: false
+    t.boolean  "send_fb",         default: false, null: false
+    t.boolean  "send_tw",         default: false, null: false
+    t.boolean  "send_gg",         default: false, null: false
+    t.boolean  "message_sent",    default: false, null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "messages", ["relationship_id"], name: "index_messages_on_relationship_id", using: :btree
+
   create_table "relationships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "relationship_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "nickname",                        null: false
+    t.string   "picture"
+    t.string   "email",           default: "",    null: false
+    t.boolean  "fb_connected",    default: false, null: false
+    t.boolean  "tw_connected",    default: false, null: false
+    t.boolean  "gg_connected",    default: false, null: false
+    t.date     "send_date"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "relationships", ["user_id"], name: "index_relationships_on_user_id", using: :btree

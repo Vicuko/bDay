@@ -15,6 +15,6 @@ class CreateSocialNetworks < ActiveRecord::Migration
 		t.string :timezone
 		t.string :language, default: "es"
       	t.timestamps null: false
-    end
+  	end
   end
 end

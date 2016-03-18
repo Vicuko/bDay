@@ -27,10 +27,12 @@ end
 10.times do |n|
 	Relationship.create(
 		user_id: n,
-		relationship_id: n+1
+		relationship_id: n+1,
+		nickname: User.find(n+1).name
 		)
 	Relationship.create(
 		user_id: n,
-		relationship_id: n+2
+		relationship_id: n+2,
+		nickname: User.find(n+2).name
 		)
 end

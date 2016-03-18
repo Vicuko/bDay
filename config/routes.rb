@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
   get '/users/show', to: 'users#show', as: "show_user"
   get '/users/edit_profile', to: 'users#edit', as: "edit_user"
-  patch '/users/edit_profile', to: 'users#update'
-  put '/users/edit_profile', to: 'users#update'
-  
+  patch '/users/edit_profile', to: 'users#update', as: ""
+  put '/users/edit_profile', to: 'users#update', as: ""
+  resources :relationships, only: [:index, :new, :create]
+  patch '/relationship', to: 'relationships#update', as: ""
+  put '/relationship', to: 'relationships#update', as: ""
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

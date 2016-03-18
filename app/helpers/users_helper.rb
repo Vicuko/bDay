@@ -8,7 +8,7 @@ module UsersHelper
 	end
 
 	def user_signed_up?(email)
-		User.find_by("email=?","email").where("signed_up=?",true).present?
+		User.find_by!("email=? AND signed_up=?", "email", true).present?
 		rescue ActiveRecord::RecordNotFound
 	    	return false
 	end
