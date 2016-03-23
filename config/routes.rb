@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   patch '/users/edit_profile', to: 'users#update', as: ""
   put '/users/edit_profile', to: 'users#update', as: ""
   resources :relationships, only: [:index, :new, :create]
-  patch '/relationship', to: 'relationships#update', as: ""
-  put '/relationship', to: 'relationships#update', as: ""
+  patch '/relationships', to: 'relationships#update', as: ""
+  put '/relationships', to: 'relationships#update', as: ""
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

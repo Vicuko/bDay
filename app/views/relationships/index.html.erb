@@ -1,57 +1,69 @@
 <h2>Contactos</h2>
 
+<% @relationships.each do |relationship| 
+    fb_status = @user_active_networks[:facebook]
+    tw_status = @user_active_networks[:twitter]
+    gg_status = @user_active_networks[:google_oauth2]
+  %>
+
 <section>
-  <h4>Nombre:</h4>
-  <span type="text" class="form-control"><%= resource.name %></span>
+  <h4><%=relationship.nickname%></h4>
 </section>
 
 <section>
-  <h4>Apellidos:</h4>
-  <span type="text" class="form-control"><%= resource.surname %></span>
-</section>
 
-<section>
-  <h4>Email:</h4>
-  <span type="email" class="form-control"><%= resource.email %></span>
-</section>
+<%= form_for(@messages, url: relationships_path, html: { method: :put }) do |f| %>
+    
+    <div class="checkbox-inline">
+    <%= if fb_status and relationship.fb_connected
+          '<div class="checkbox disabled">
+            <label>
+              <input type="checkbox" value=:send_fb >Facebook
+            </label>
+            </div>'.html_safe
+          # f.check_box(:send_fb, type: "checkbox")
+          # label_tag(:send_fb, "Facebook")
+        else
+            '<input type="checkbox" value=:send_fb disabled>Facebook'.html_safe
+        #   f.check_box(:send_fb, type: "checkbox", class:"disabled")
+        #   label_tag(:send_fb, "Facebook")
+        end %>
+    </div>
 
-<section>
-  <h4>Cumpleaños:</h4>
-  <span type="date" class="form-control"><%= resource.bday %></span>
-</section>
+    <div class="checkbox-inline">
+    <%= if tw_status and relationship.tw_connected
+          '<input type="checkbox" value=:send_tw >Twitter'.html_safe
+          # f.check_box(:send_fb, type: "checkbox")
+          # label_tag(:send_tw, "Twitter")
+        else
+          '<input type="checkbox" value=:send_tw disabled>Twitter'.html_safe
+          # f.check_box(:send_tw, type: "checkbox", class:"disabled")
+          # label_tag(:send_tw, "Twitter")
+        end %>
+    </div>
 
-<section>
-  <h4>Ciudad:</h4>
-  <span type="text" class="form-control"><%= resource.city %></span>
-</section>
+    <div class="checkbox-inline">
+    <%= if gg_status and relationship.gg_connected
+          '<input type="checkbox" value=:send_gg >Google'.html_safe
+          # f.check_box(:send_gg,)
+          # label_tag(:send_gg, "Google")
+        else
+         '<input type="checkbox" value=:send_gg disabled>Google'.html_safe
+          # f.check_box(:send_gg, type: "checkbox", class:"disabled")
+          # label_tag(:send_gg, "Google")
+        end %>
+    </div>
+        <% f.text_field :message %><textarea class="form-control" rows="3"></textarea>
+  <div class="actions">
+    <%= f.submit "Guardar" %>
+  </div>
 
-<section>
-  <h4>País:</h4>
-  <span type="text" class="form-control"><%= resource.country %></span>
+  <% end %>
 </section>
-
-<section>
-  <h4>Idioma:</h4>
-  <span type="text" class="form-control"><%= resource.language %></span>
-</section>
-
-<section>
-  <h4>Género:</h4>
-  <span type="text" class="form-control">
-    <%= case (resource.gender)
-      when "m"
-        "Hombre"
-      when "f"
-        "Mujer"
-      when "u"
-        "Indefinido"
-      end %></span>
-</section>
+<% end %>
 
 <%= link_to image_tag("FB.svg", size: "50",class: "social_login"), user_omniauth_authorize_path(:facebook), size: "10px" %>
 <%= link_to image_tag("TW.svg", size: "50", class: "social_login"), user_omniauth_authorize_path(:twitter), size: "10px" %>
 <%= link_to image_tag("GG.svg", size: "50", class: "social_login"), user_omniauth_authorize_path(:google_oauth2), size: "10px" %>
 
 <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
-
-<%= button_to 'Editar', edit_user_path, :action => 'get', :method => 'get', class: 'btn btn-default btn-sm tpnt_button pull-left'%>
