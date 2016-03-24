@@ -6,6 +6,10 @@
 
 <%= form_for(resource, as: resource_name, url: relationships_path(resource_name), html: { method: :put }) do |user| %>
 
+  <div class="actions">
+    <%= user.submit "Guardar" %>
+  </div>
+
   <%= user.fields_for :relationships do |rel| %>
     <section>
       <h4><%=rel.object.nickname%></h4>
@@ -61,14 +65,10 @@
         </div>
       <% end %>
     <% end %>  
-
-        <div class="actions">
-            <%= rel.submit "Guardar" %>
-        </div>
       
     <% end %>
     <div class="actions">
-      <%= user.submit "Guardar todo" %>
+      <%= user.submit "Guardar" %>
     </div>
   <% end %>
 
