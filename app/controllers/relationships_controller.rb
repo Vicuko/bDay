@@ -60,7 +60,7 @@ private
 
 	def get_last_message(relationship)
 		message = relationship.messages.last || Message.new
-		message.message_sent ? message : Message.new
+		message.message_sent ? Message.new : message
 	end
 
 	

@@ -1,0 +1,40 @@
+<% if relationship.email.present? %>
+  <%= f.check_box :send_email, class: "checkbox_inline"%>
+  Email
+<% else %>
+  <%= f.check_box :send_email, class: "checkbox_inline", disabled: true%>
+  Email
+<% end %>
+
+
+<% if fb_status and relationship.fb_connected %>
+  <%= f.check_box :send_fb, class: "checkbox_inline"%>
+  Facebook
+<% else %>
+  <%= f.check_box :send_fb, class: "checkbox_inline", disabled: true%>
+  Facebook
+<% end %>
+
+
+<% if tw_status and relationship.tw_connected %>
+  <%= f.check_box :send_tw, class: "checkbox_inline"%>
+  Twitter    
+<% else %>
+  <%= f.check_box :send_tw, class: "checkbox_inline", disabled: true%>
+  Twitter
+<% end %>
+
+
+<% if gg_status and relationship.gg_connected %>
+  <%= f.check_box :send_gg, class: "checkbox_inline"%>
+  Google    
+<% else %>
+  <%= f.check_box :send_gg, class: "checkbox_inline", disabled: true%>
+  Google
+<% end %>
+
+
+<div>
+  <%= f.label :"Mensaje:" %><br />
+  <%= f.text_area :message, class: "form-control", rows:"3",  autofocus: true %>
+</div>

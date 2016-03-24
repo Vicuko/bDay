@@ -1,66 +1,40 @@
 <h2>Contactos</h2>
 
-<% @relationships.each do |relationship| 
-    fb_status = @user_active_networks[:facebook]
-    tw_status = @user_active_networks[:twitter]
-    gg_status = @user_active_networks[:google_oauth2]
-  %>
 
-<section>
-  <h4><%=relationship.nickname%></h4>
-</section>
+  <% @relationships.each_with_index do |relationship,key|
+      fb_status = @user_active_networks[:facebook]
+      tw_status = @user_active_networks[:twitter]
+      gg_status = @user_active_networks[:google_oauth2]%>
 
-<section>
+    <%= form_for(relationship, url: relationships_path(relationship), html: { method: :put }) do |rel| %>
 
-<%= form_for(@messages, url: relationships_path, html: { method: :put }) do |f| %>
-    
-    <div class="checkbox-inline">
-    <%= if fb_status and relationship.fb_connected
-          '<div class="checkbox disabled">
-            <label>
-              <input type="checkbox" value=:send_fb >Facebook
-            </label>
-            </div>'.html_safe
-          # f.check_box(:send_fb, type: "checkbox")
-          # label_tag(:send_fb, "Facebook")
-        else
-            '<input type="checkbox" value=:send_fb disabled>Facebook'.html_safe
-        #   f.check_box(:send_fb, type: "checkbox", class:"disabled")
-        #   label_tag(:send_fb, "Facebook")
-        end %>
-    </div>
+      <section>
+        <h4><%=relationship.nickname%></h4>
+      </section>
 
-    <div class="checkbox-inline">
-    <%= if tw_status and relationship.tw_connected
-          '<input type="checkbox" value=:send_tw >Twitter'.html_safe
-          # f.check_box(:send_fb, type: "checkbox")
-          # label_tag(:send_tw, "Twitter")
-        else
-          '<input type="checkbox" value=:send_tw disabled>Twitter'.html_safe
-          # f.check_box(:send_tw, type: "checkbox", class:"disabled")
-          # label_tag(:send_tw, "Twitter")
-        end %>
-    </div>
+          <%= rel.label :Email %><br>
+          <%= rel.text_field :email, autofocus: true %>
 
-    <div class="checkbox-inline">
-    <%= if gg_status and relationship.gg_connected
-          '<input type="checkbox" value=:send_gg >Google'.html_safe
-          # f.check_box(:send_gg,)
-          # label_tag(:send_gg, "Google")
-        else
-         '<input type="checkbox" value=:send_gg disabled>Google'.html_safe
-          # f.check_box(:send_gg, type: "checkbox", class:"disabled")
-          # label_tag(:send_gg, "Google")
-        end %>
-    </div>
-        <% f.text_field :message %><textarea class="form-control" rows="3"></textarea>
+      <section>
+      <%= form_for(@messages[key], url: relationships_path, html: { method: :put }) do |f| %>
+
+          <%=render partial: "message_form", locals: {f: f, relationship: relationship, fb_status: fb_status, tw_status: tw_status, gg_status: gg_status} %>
+          
+          <div class="actions">
+            <%= f.submit "Guardar" %>
+          </div>
+
+        <% end %>
+      
+    <% end %>
+  <% end %>
+
   <div class="actions">
-    <%= f.submit "Guardar" %>
+     <%= submit_tag "Guardar todo" %>
   </div>
 
-  <% end %>
+
 </section>
-<% end %>
 
 <%= link_to image_tag("FB.svg", size: "50",class: "social_login"), user_omniauth_authorize_path(:facebook), size: "10px" %>
 <%= link_to image_tag("TW.svg", size: "50", class: "social_login"), user_omniauth_authorize_path(:twitter), size: "10px" %>
