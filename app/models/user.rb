@@ -1,10 +1,12 @@
 class User < ActiveRecord::Base
   has_many :relationships_association, :class_name => "Relationship"
-  has_many :relationships, :through => :relationships_association, :source => :relationship
-  has_many :inverse_relationships_association, :class_name => "Relationship", :foreign_key => "relationship_id"
-  has_many :inverse_relationships, :through => :inverse_relationships_association, :source => :user
+  has_many :relationships
+  # ,:through => :relationships_association, :source => :relationship
+  # has_many :inverse_relationships_association, :class_name => "Relationship", :foreign_key => "relationship_id"
+  # has_many :inverse_relationships, :through => :inverse_relationships_association, :source => :user
   has_many :social_networks, inverse_of: :user
   has_many :inverse_social_networks
+  accepts_nested_attributes_for :relationships
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

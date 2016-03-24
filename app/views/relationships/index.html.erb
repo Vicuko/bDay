@@ -1,39 +1,7 @@
 <h2>Contactos</h2>
 
-
-  <% @relationships.each_with_index do |relationship,key|
-      fb_status = @user_active_networks[:facebook]
-      tw_status = @user_active_networks[:twitter]
-      gg_status = @user_active_networks[:google_oauth2]%>
-
-    <%= form_for(relationship, url: relationships_path(relationship), html: { method: :put }) do |rel| %>
-
-      <section>
-        <h4><%=relationship.nickname%></h4>
-      </section>
-
-          <%= rel.label :Email %><br>
-          <%= rel.text_field :email, autofocus: true %>
-
-      <section>
-      <%= form_for(@messages[key], url: relationships_path, html: { method: :put }) do |f| %>
-
-          <%=render partial: "message_form", locals: {f: f, relationship: relationship, fb_status: fb_status, tw_status: tw_status, gg_status: gg_status} %>
+  <%=render partial: "message_form", locals: {user_active_networks: @user_active_networks} %>
           
-          <div class="actions">
-            <%= f.submit "Guardar" %>
-          </div>
-
-        <% end %>
-      
-    <% end %>
-  <% end %>
-
-  <div class="actions">
-     <%= submit_tag "Guardar todo" %>
-  </div>
-
-
 </section>
 
 <%= link_to image_tag("FB.svg", size: "50",class: "social_login"), user_omniauth_authorize_path(:facebook), size: "10px" %>

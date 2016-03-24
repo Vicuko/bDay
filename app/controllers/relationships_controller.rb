@@ -3,8 +3,8 @@ class RelationshipsController < ApplicationController
 	layout "users"
 
 	def index
-		@relationships = get_user_relationships(current_user)
-		@messages = get_user_messages(@relationships)
+		# @relationships = get_user_relationships(current_user)
+		# @messages = get_user_messages(@relationships)
 		@user_active_networks = get_user_active_networks(current_user)
 	end
 
