@@ -1,11 +1,7 @@
 <h2>Contactos</h2>
 
-  <%=render partial: "relationships_form", locals: {user_active_networks: @user_active_networks} %>
+	<%=render partial: "relationships_form", locals: {user_active_networks: @user_active_networks} %>
           
 </section>
 
-<%= link_to image_tag("FB.svg", size: "50",class: "social_login"), user_omniauth_authorize_path(:facebook), size: "10px" %>
-<%= link_to image_tag("TW.svg", size: "50", class: "social_login"), user_omniauth_authorize_path(:twitter), size: "10px" %>
-<%= link_to image_tag("GG.svg", size: "50", class: "social_login"), user_omniauth_authorize_path(:google_oauth2), size: "10px" %>
-
-<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
+	<%=render partial: "./shared/social_networks" %>

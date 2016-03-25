@@ -4,11 +4,15 @@
   gg_status = user_active_networks[:google_oauth2]
 %>
 
+<%= button_to 'Añadir', new_relationship_path, :method => 'get', class: 'btn btn-default btn-sm tpnt_button pull-left'%>
+<div>
 <%= form_for(resource, as: resource_name, url: relationships_path(resource_name), html: { method: :put }) do |user| %>
 
   <div class="actions">
     <%= user.submit "Guardar" %>
   </div>
+
+
 
   <%= user.fields_for :relationships do |rel| %>
     <section>
@@ -65,12 +69,14 @@
         </div>
       <% end %>
     <% end %>  
+    </section>
       
     <% end %>
     <div class="actions">
       <%= user.submit "Guardar" %>
     </div>
   <% end %>
+  </div>
 
 
 

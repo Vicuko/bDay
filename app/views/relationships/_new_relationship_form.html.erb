@@ -1,0 +1,20 @@
+<%= form_for(@relationship, url: relationships_path(@relationship), html: { method: :post }) do |rel| %>
+
+	<section>
+
+		<%= rel.label :Nombre %>
+        <%= rel.text_field :nickname, autofocus: true %>        
+		<br>
+		<%= rel.label :Email %>
+        <%= rel.text_field :email, autofocus: true %>
+		<br>
+        <%= rel.label :Cumpleaños %>
+        <%= rel.date_field :send_date, autofocus: true %>
+
+    </section>
+
+	<div class="actions">
+      <%= rel.submit "Crear" %>
+    </div>
+
+<% end %>

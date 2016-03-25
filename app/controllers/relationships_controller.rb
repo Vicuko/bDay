@@ -6,11 +6,36 @@ class RelationshipsController < ApplicationController
 		@user_active_networks = get_user_active_networks(current_user)
 	end
 
-	# def create
-	# end
+	def create
+		name = relationship_params[:nickname].split[0] || ""
+      	sirname = relationship_params[:nickname].split[1..-1].join(" ") || "" 
+      	email = relationship_params[:email]
+      	id = User.persona_find_or_create(nil, email, name, sirname)
 
-	# def new
-	# end
+      	if Relationship.relationship_exists?(current_user.id,id)
+      		flash[:alert] = "Ya tenías a este contacto"
+      		render relationships_path
+
+      	else
+      		rel = relationship_params.clone
+      		rel[:user_id]=current_user.id
+      		rel[:relationship_id]=id
+      		if Relationship.create(rel)
+      			"""
+				Falta incluir la creación de un mensaje vacía para esta relación. Estaría interesante que en el momento de crear la relación, nos devolviese el id, que es lo único necesario para crear el mensaje metiéndolo en el campo relationship_id
+      			"""
+
+      			redirect_to relationships_path
+      		else
+      			flash[:alert] = "Oops, there was a problem creating your contact. Please try again."
+      			render new_relationship
+      		end
+      	end
+	end
+
+	def new
+		@relationship = Relationship.new
+	end
 
 	def update
 		update_successful = true
@@ -32,7 +57,7 @@ class RelationshipsController < ApplicationController
 private
 
 	def relationship_params
-      params.require(:relationship).permit(:name, :surname, :email, :bday, :city, :country, :language, :gender)
+      params.require(:relationship).permit(:nickname, :email, :send_date)
     end
 
 
