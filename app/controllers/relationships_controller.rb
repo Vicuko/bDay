@@ -54,13 +54,15 @@ class RelationshipsController < ApplicationController
 	
 private
 
-	 def relationship_params
+    def relationship_params
       params.require(:relationship).permit(:nickname, :email, :send_date)
-
-
     end
 
+    def form_for_relationship_params
+      params.require(:user).permit(relationships_attributes: [:id, :nickname, :email, :"send_date(1i)", :"send_date(2i)", :"send_date(3i)", :send_message, messages_attributes: [:message, :send_email, :send_fb, :send_tw, :send_gg, :id]])
+    end
 
+    
     def clean_date(relationship)
       year = relationship.delete("send_date(1i)").to_i || Date.today.year
       month = relationship.delete("send_date(2i)").to_i || Date.today.month
@@ -71,9 +73,7 @@ private
     end
 
 
-    def form_for_relationship_params
-    	params.require(:user).permit(relationships_attributes: [:id, :nickname, :email, :"send_date(1i)", :"send_date(2i)", :"send_date(3i)", messages_attributes: [:message, :send_email, :send_fb, :send_tw, :send_gg, :id]])
-    end
+    
 
     def rel_find_by_id(relationship)
     	Relationship.find(relationship[1][:id])

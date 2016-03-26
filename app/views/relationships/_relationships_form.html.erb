@@ -67,9 +67,11 @@
 
         <div>
           <%= f.label :"Mensaje:" %><br>
-          <%= f.text_area :message, class: "form-control", rows:"3",  autofocus: true %>
+          <%= f.text_area :message, class: "form-control", rows:"3",  autofocus: true %>         
         </div>
+
       <% end %>
+      Send<%= rel.check_box :send_message, class: "checkbox_inline"%> 
     <% end %>  
     </section>
       

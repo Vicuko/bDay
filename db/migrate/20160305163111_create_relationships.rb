@@ -10,6 +10,7 @@ class CreateRelationships < ActiveRecord::Migration
     	t.boolean :tw_connected, null: false, default: false
     	t.boolean :gg_connected, null: false, default: false
     	t.date :send_date
+      t.boolean :send_message, null: false, default: true
       t.timestamps null: false
     end
   end

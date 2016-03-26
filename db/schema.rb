@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160318160459) do
     t.boolean  "tw_connected",    default: false, null: false
     t.boolean  "gg_connected",    default: false, null: false
     t.date     "send_date"
+    t.boolean  "send_message",    default: true,  null: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end
