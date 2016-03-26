@@ -20,13 +20,10 @@ class RelationshipsController < ApplicationController
       		rel = relationship_params.clone
       		rel[:user_id]=current_user.id
       		rel[:relationship_id]=id
+          rel=clean_date(rel)
       		rel_id = Relationship.find_or_create(rel)
       		if Message.create(relationship_id: rel_id)
-      			"""
-				Falta incluir la creación de un mensaje vacío para esta relación. Estaría interesante que en el momento de crear la relación, nos devolviese el id, que es lo único necesario para crear el mensaje metiéndolo en el campo relationship_id
-      			"""
-
-      			redirect_to relationships_path
+       			redirect_to relationships_path
       		else
       			flash[:alert] = "Oops, there was a problem creating your contact. Please try again."
       			render new_relationship
@@ -41,8 +38,8 @@ class RelationshipsController < ApplicationController
 	def update
 		update_successful = true
 		form_for_relationship_params[:relationships_attributes].each do |relationship|
-			
-			if not rel(relationship).update(rel_update_params(relationship)) or not msge(relationship).update(msge_update_params(relationship))
+			relationship[1]=clean_date(relationship[1])
+			if not rel_find_by_id(relationship).update(rel_update_params(relationship)) or not msge(relationship).update(msge_update_params(relationship))
 				update_successful = false
 			end
 		end
@@ -57,18 +54,28 @@ class RelationshipsController < ApplicationController
 	
 private
 
-	def relationship_params
+	 def relationship_params
       params.require(:relationship).permit(:nickname, :email, :send_date)
+
+
     end
 
 
+    def clean_date(relationship)
+      year = relationship.delete("send_date(1i)").to_i || Date.today.year
+      month = relationship.delete("send_date(2i)").to_i || Date.today.month
+      day = relationship.delete("send_date(3i)").to_i || Date.today.day
+      relationship[:send_date]=Date.new(year, month, day)
+
+      return relationship
+    end
 
 
     def form_for_relationship_params
-    	params.require(:user).permit(relationships_attributes: [:id, :nickname, :email, messages_attributes: [:message, :send_email, :send_fb, :send_tw, :send_gg, :id]])
+    	params.require(:user).permit(relationships_attributes: [:id, :nickname, :email, :"send_date(1i)", :"send_date(2i)", :"send_date(3i)", messages_attributes: [:message, :send_email, :send_fb, :send_tw, :send_gg, :id]])
     end
 
-    def rel(relationship)
+    def rel_find_by_id(relationship)
     	Relationship.find(relationship[1][:id])
     end
 
@@ -115,7 +122,5 @@ private
 		end
 		return networks
 	end
-
-
 
 end	

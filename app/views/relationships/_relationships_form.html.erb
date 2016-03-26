@@ -8,20 +8,22 @@
 <div>
 <%= form_for(resource, as: resource_name, url: relationships_path(resource_name), html: { method: :put }) do |user| %>
 
-  <div class="actions">
-    <%= user.submit "Guardar" %>
-  </div>
-
-
+  <section>
+    <div class="actions">
+      <%= user.submit "Guardar" %>
+    </div>
+  </section>
 
   <%= user.fields_for :relationships do |rel| %>
     <section>
-      <h4><%=rel.object.nickname%></h4>
+      <h4><%=rel.text_field :nickname%></h4>
     </section>
     
     <section>
-        <%= rel.label :Email %><br>
+        <%= rel.label :Email %>
         <%= rel.text_field :email, autofocus: true %>
+        <%= rel.label :Birthday %>
+        <%= rel.date_select :send_date, discard_year: true, autofocus: true %>
     </section>
     
     <section>
