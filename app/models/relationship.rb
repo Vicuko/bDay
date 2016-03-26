@@ -4,8 +4,8 @@ class Relationship < ActiveRecord::Base
   	has_many :messages
   	accepts_nested_attributes_for :messages
 
-  	def self.relationship_find_or_create(user, relationship)
-
+  	def self.find_or_create(relationship)
+  		Relationship.find_or_create_by(relationship).id
   	end
 
   	def self.relationship_exists?(user_id, relationship_id)

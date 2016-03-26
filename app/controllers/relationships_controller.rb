@@ -20,9 +20,10 @@ class RelationshipsController < ApplicationController
       		rel = relationship_params.clone
       		rel[:user_id]=current_user.id
       		rel[:relationship_id]=id
-      		if Relationship.create(rel)
+      		rel_id = Relationship.find_or_create(rel)
+      		if Message.create(relationship_id: rel_id)
       			"""
-				Falta incluir la creación de un mensaje vacía para esta relación. Estaría interesante que en el momento de crear la relación, nos devolviese el id, que es lo único necesario para crear el mensaje metiéndolo en el campo relationship_id
+				Falta incluir la creación de un mensaje vacío para esta relación. Estaría interesante que en el momento de crear la relación, nos devolviese el id, que es lo único necesario para crear el mensaje metiéndolo en el campo relationship_id
       			"""
 
       			redirect_to relationships_path

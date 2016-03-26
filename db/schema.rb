@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20160318160459) do
 
   create_table "messages", force: :cascade do |t|
     t.integer  "relationship_id"
-    t.string   "message",                         null: false
-    t.string   "message_url",                     null: false
+    t.string   "message",         default: "",    null: false
+    t.string   "message_url",     default: "",    null: false
     t.boolean  "send_email",      default: false, null: false
     t.boolean  "send_fb",         default: false, null: false
     t.boolean  "send_tw",         default: false, null: false
