@@ -8,9 +8,4 @@ class RelationshipMailer < ApplicationMailer
 		mail(to: @relationship.email, subject: '¡Felicidades @relationship.nickname!')
 	end
 
-
-
-
-
-
 end

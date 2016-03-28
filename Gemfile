@@ -36,6 +36,8 @@ gem 'figaro'
 
 gem 'sidekiq'
 
+gem 'sidetiq'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
