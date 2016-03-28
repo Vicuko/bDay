@@ -34,6 +34,8 @@ gem 'omniauth-google-oauth2'
 
 gem 'figaro'
 
+gem 'queue_classic', '~> 3.0.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
