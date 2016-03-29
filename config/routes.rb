@@ -1,6 +1,4 @@
-require 'sidekiq/web'
 Rails.application.routes.draw do
-  mount Sidekiq::Web, at: '/sidekiq'
   root to: 'site#index'
   devise_for :users, controllers: { registrations: "users/registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
   get '/users/show', to: 'users#show', as: "show_user"
