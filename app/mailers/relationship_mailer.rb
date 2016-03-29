@@ -1,5 +1,5 @@
 class RelationshipMailer < ApplicationMailer
-	default from: 'info@bday.today'
+	default from: 'happy@bday.today'
 
 	def message_email(relationship, message)
 		@relationship = relationship
