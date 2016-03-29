@@ -1,5 +1,6 @@
 class DeliverMessagesJob
 	include Sidekiq::Worker
+	sidekiq_options :retry => 5
   	include Sidetiq::Schedulable
   	sidekiq_options queue: 'messages_distribution'
 
@@ -8,6 +9,73 @@ class DeliverMessagesJob
   end
 
   def perform()
-    RelationshipMailer.message_email(Relationship.last, Message.last).deliver_later    
+  	@relationships=Relationship.where("send_message=? AND send_date<=?", true, Date.today).order(updated_at: :desc)
+
+  	if @relationships.present?
+
+	  	@relationships.each do |relationship|
+	  		@message = relationship.messages.where("message_sent=?",false)
+	  		
+	  		if @message.size > 1
+	  			correct_messages(@message[1..-1])
+	  			@message=@message[0]
+	  		else
+	  			@message=@message[0]
+	  		end
+
+	  		if 	relationship.send_message
+	  			send_mail(relationship, @message)
+	  		end
+
+	  		if relationship.send_message and relationship.fb_connected
+	  			send_facebook_message(relationship.attributes)
+	  		end
+	  		
+	  		if relationship.send_message and relationship.tw_connected
+	  			send_twitter_message(relationship.attributes)
+	  		end
+
+	  		if relationship.send_message and relationship.gg_connected
+	  			send_google_message(relationship.attributes)
+	  		end
+
+	  		if @message.present?
+	  			update_message_status(@message)
+	  		end
+	  	end
+  	end  
+
+  end
+
+
+private
+
+  def send_mail(relationship, message)
+	RelationshipMailer.message_email(relationship,message).deliver_later 
+  end
+
+
+  def send_facebook_message(relationship)
+  	print "Facebook"
+
+  end
+
+  def send_twitter_message(relationship)
+
+  	print "Twitter"
+  end
+
+  def send_google_message(relationship)
+
+  	print "Google"
+  end
+
+  def update_message_status(message)
+	  message.update(message_sent: true)
+	  rescue ActiveRecord::RecordNotFound || ActiveRecord::NoMethodError
+  end
+
+  def correct_messages(messages)
+
   end
 end

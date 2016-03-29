@@ -8,4 +8,7 @@
   :queues:
     - default
     - messages_distribution
-    - [messages, 2]
+    - mailers
+    - facebook_messages
+    - twitter_messages
+    - google_messages
