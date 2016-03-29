@@ -337,6 +337,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   capybara
+  celluloid
   database_cleaner
   devise
   factory_girl_rails
@@ -344,6 +345,7 @@ DEPENDENCIES
   figaro
   guard-rails
   guard-rspec
+  ice_cube
   jbuilder (~> 2.0)
   jquery-rails
   omniauth-facebook

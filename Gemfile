@@ -36,6 +36,8 @@ gem 'figaro'
 
 gem 'sidekiq'
 
+gem 'celluloid'
+gem 'ice_cube'
 gem 'sidetiq'
 
 gem 'sinatra', require: false
