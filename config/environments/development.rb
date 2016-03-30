@@ -48,4 +48,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Include Redis gem for workers and job queue handling
+  config.gem 'redis'
+
 end

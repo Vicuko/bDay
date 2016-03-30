@@ -34,6 +34,8 @@ gem 'omniauth-google-oauth2'
 
 gem 'figaro'
 
+gem 'redis'
+
 gem 'sidekiq'
 
 gem 'celluloid'
