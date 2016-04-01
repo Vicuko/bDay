@@ -239,17 +239,17 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, '1575211679471592', '08b78c1d3abfe0e9c67e83bf6763d785', scope: 'public_profile,email,user_friends,user_birthday,publish_actions', display: 'popup',
-    callback_path: "/users/auth/facebook/callback"
-  config.omniauth :twitter, 'U2mbBQvFdoJM4WYCXGtUmnJOB', 'm4QRt7soZkbaoQQ6Y7r2q42cufk3JscX82tITFhXqKo9A8M7Jg', {
+  config.omniauth :facebook, ENV['fb_key'], ENV['fb_secret'], scope: ENV['fb_scope'], display: 'popup',
+    callback_path: ENV['fb_callback']
+  config.omniauth :twitter, ENV['tw_key'], ENV['tw_secret'], {
       :secure_image_url => 'true',
       :image_size => 'original',
       :authorize_params => {
         :lang => 'es'
       }
     }
-  config.omniauth :google_oauth2, '888574492154-2ojvl3ek1m05kuufsun5qgd56ej1cfa0.apps.googleusercontent.com', 'kKCBmrc0EV-lS-l47cwrw8cb', {
-    scope: 'plus.login, gmail.send, userinfo.email, userinfo.profile, contacts.readonly, user.birthday.read'
+  config.omniauth :google_oauth2, ENV['gg_key'], ENV['gg_secret'], {
+    scope: ENV['gg_scope']
     }
 
   # ==> Warden configuration

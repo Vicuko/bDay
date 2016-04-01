@@ -38,9 +38,11 @@ class SocialNetwork < ActiveRecord::Base
 	def self.from_omniauth_tw(id,auth)
 		where(provider: auth.provider, uid: auth.uid).first_or_create do |persona|
 	    		persona.user_id = id
+	    		persona.nickname = "@" + auth.info.nickname || ""
 	    		persona.token = auth.credentials.token || ""
+	    		persona.secret = auth.credentials.secret || ""
 	    		persona.expiry_date = auth.credentials.expires_at  || ""
-	    		persona.expires = auth.extra.access_token.params[:x_auth_expires]
+	    		persona.expires = auth.extra.access_token.params[:x_auth_expires] || true
 	    		persona.email = auth.info.email || ""
 	    		persona.password = Devise.friendly_token[0,20] || ""
 	    		persona.image = auth.info.image || ""

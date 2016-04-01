@@ -50,9 +50,11 @@ ActiveRecord::Schema.define(version: 20160318160459) do
 
   create_table "social_networks", force: :cascade do |t|
     t.integer  "user_id"
+    t.string   "nickname",    default: "",    null: false
     t.string   "provider",                    null: false
     t.string   "uid",                         null: false
     t.string   "token",                       null: false
+    t.string   "secret",      default: "",    null: false
     t.string   "expiry_date",                 null: false
     t.boolean  "expires",     default: true,  null: false
     t.string   "email",       default: "",    null: false
@@ -91,7 +93,7 @@ ActiveRecord::Schema.define(version: 20160318160459) do
     t.datetime "updated_at",                                    null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
