@@ -9,6 +9,9 @@ class CreateMessages < ActiveRecord::Migration
 	  t.boolean :send_tw, null: false, default: false
 	  t.boolean :send_gg, null: false, default: false
 	  t.boolean :message_sent, null: false, default: false
+	  t.string :fb_sent_message, default: ""
+	  t.string :tw_sent_message, default: ""
+	  t.string :gg_sent_message, default: ""
       t.timestamps null: false
     end
   end

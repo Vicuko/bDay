@@ -31,7 +31,6 @@ class TwitterFriends
 		http.start
 		response = http.request request
 		ids = parse_ids_response(response)
-
 		#Once we get the ids, we call on the jobs for retrieving the information for the ids. Depending on the amount of ids, we may have to call more than once
 		if ids.present? and @user.persisted?
 			distribute_ids(ids)
@@ -66,7 +65,7 @@ private
 	  	if ids.size > 100
 			TwitterFriendsInfos.perform_async(@user.id,ids[0..99])
 			distribute_ids(ids[100..-1])
-		elsif 1 < ids.size <= 100
+		elsif 1 < ids.size and ids.size <= 100
 			TwitterFriendsInfos.perform_async(@user.id,ids[0..-1])
 		elsif ids.size = 1
 			TwitterFriendsInfo.perform_async(@user.id,ids)

@@ -25,6 +25,9 @@ ActiveRecord::Schema.define(version: 20160318160459) do
     t.boolean  "send_tw",         default: false, null: false
     t.boolean  "send_gg",         default: false, null: false
     t.boolean  "message_sent",    default: false, null: false
+    t.string   "fb_sent_message", default: ""
+    t.string   "tw_sent_message", default: ""
+    t.string   "gg_sent_message", default: ""
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end

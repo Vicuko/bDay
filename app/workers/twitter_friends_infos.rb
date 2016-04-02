@@ -12,9 +12,10 @@ class TwitterFriendsInfos
   	if @twitter_info.present?
 		# All requests will be sent to this server.
 		baseurl = "https://api.twitter.com"
-		query = "?user_id=#{ids.join(',')}"
+		path = "/1.1/users/lookup.json"
+		query = URI.encode_www_form("user_id"=>"#{ids.join(',')}")
 		# Verify credentials returns the current user in the body of the response.
-		address = URI("#{baseurl}/1.1/users/lookup.json#{query}")
+		address = URI("#{baseurl}#{path}?#{query}")
 
 		# Set up HTTP.
 		http             = Net::HTTP.new address.host, address.port
