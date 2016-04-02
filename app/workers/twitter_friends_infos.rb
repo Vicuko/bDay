@@ -47,13 +47,13 @@ private
 		# Parse a response from the API and return a user object.
 	  friends = nil
 	  parsed_group = []
-	  parsed_friends = []
+	  parsed_friend = []
 	  parsed_persona = []
 	  # Check for a successful request
 	  if response.code == '200'
 	  	friends = JSON(response.body)
 	  	friends.each_with_index do |friend,index|
-	    	parsed_friends[index]={
+	    	parsed_friend[index]={
 	    		nickname: friend["screen_name"] || "",
 	    		uid: friend["id"],
 	    		token: "",
@@ -75,7 +75,7 @@ private
 	    		language: friend["lang"] || "es"
 	    	}
 
-	    	parsed_group[index] = parsed_friends[index],parsed_persona[index]
+	    	parsed_group[index] = parsed_friend[index],parsed_persona[index]
 		end
 		puts "Friend list parsed correctly"
 

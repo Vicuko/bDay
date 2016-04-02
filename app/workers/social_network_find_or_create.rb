@@ -18,7 +18,7 @@ class SocialNetworkFindOrCreate
   		if @social_network.user_id.present?
   			RelationshipFindOrCreate.perform_async(@relationship_info)
   		else
-  			PersonaFindOrCreate.perform_async(@persona_info,@relationship_info)
+  			PersonaFindOrCreate.perform_async(@persona_info,@relationship_info,@social_network.id)
   		end
   	end
   end
