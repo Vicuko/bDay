@@ -7,7 +7,7 @@ class TwitterFriends
 
 
   def perform(user_id)
-  	@user = User.find(user_id)
+  	@user = User.find_by(id: user_id)
   	@twitter_info = @user.social_networks.find_by("provider=?","twitter")
 	if @twitter_info.present?
 		# All requests will be sent to this server.

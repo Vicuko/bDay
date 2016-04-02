@@ -1,11 +1,12 @@
 class RelationshipMailer < ApplicationMailer
 	default from: 'happy@bday.today'
 
-	def message_email(relationship, message)
+	def message_email(sender, relationship, message)
+		@sender = sender
 		@relationship = relationship
 		@message = message
 		@url = "http://bday.today"
-		mail(to: @relationship.email, subject: '¡Felicidades @relationship.nickname!')
+		email_with_name = %("#{@relationship['nickname']}" <#{@relationship['email']}>)
+		mail(to: email_with_name, subject: "¡Felicidades #{@relationship['nickname']}!")
 	end
-
 end

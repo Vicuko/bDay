@@ -6,7 +6,7 @@ class TwitterFriendsInfos
 
 
   def perform(user_id, ids)
-  	@user = User.find(user_id)
+  	@user = User.find_by(id: user_id)
   	@provider = "twitter"
   	@twitter_info = @user.social_networks.find_by("provider=?",@provider)
   	if @twitter_info.present?

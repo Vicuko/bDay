@@ -73,8 +73,6 @@ private
     end
 
 
-    
-
     def rel_find_by_id(relationship)
     	Relationship.find(relationship[1][:id])
     end
@@ -107,9 +105,9 @@ private
     		if user_networks.include?(network.to_s)
     			networks[network]=true    		
     		end
-    	return networks
-		end
-	end
+		  end
+      return networks
+	  end
 
 	def existing_networks
 		{facebook: false, twitter: false, google_oauth2: false}

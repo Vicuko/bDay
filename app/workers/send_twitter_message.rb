@@ -1,13 +1,13 @@
-class TwitterMessage
+class SendTwitterMessage
 
 	include Sidekiq::Worker
 	sidekiq_options :retry => false
-  	sidekiq_options queue: 'default'
+  	sidekiq_options queue: 'messages_distribution'
 
 
   def perform(user_id, message_info)
-  	@user = User.find(user_id)
-  	@message = Message.find(message_info["id"])
+  	@user = User.find_by(id: user_id)
+  	@message = Message.find_by(id: message_info["id"])
   	@provider = "twitter"
   	@twitter_info = @user.social_networks.find_by("provider=?",@provider)
   	if @twitter_info.present? and @message.send_tw

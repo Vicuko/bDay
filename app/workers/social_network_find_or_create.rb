@@ -6,7 +6,7 @@ class SocialNetworkFindOrCreate
 
 
   def perform(user_id, social_network_info, persona_info, provider)
-  	@user = User.find(user_id)
+  	@user = User.find_by(id: user_id)
   	@provider = provider
   	@social_network_info = social_network_info
   	@persona_info = persona_info

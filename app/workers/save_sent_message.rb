@@ -6,7 +6,7 @@ class SaveSentMessage
 
 
   def perform(message_info, provider)
-  	@message = Message.find(message_info["id"])
+  	@message = Message.find_by(id: message_info["id"])
  	
  	if provider.present? and @message.persisted?	
 	  	case provider
