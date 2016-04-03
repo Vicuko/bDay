@@ -1,3 +1,43 @@
+#base_container {
+	padding-right: 0px;
+    padding-left: 0px;
+}
+
+.max-space {
+	height: 100%;
+	width: 100%;
+}
+
+.no-bottom {
+	margin-bottom: 0px;
+}
+
+#casita {
+	-webkit-transition: color 0.5s;
+}
+
+#casita:hover {
+	color:orange;
+}
+
+/*.topbar {
+	background-color: rgba(0,0,0,0.1);
+	height:6%;
+	width: 100%;
+	position:fixed;
+	z-index: 999;
+	overflow: scroll;
+}*/
+
+
+/*.nav_button {
+    height: 100%;
+    color: #000;
+}
+.nav_button:hover path {
+    color: #fff;
+}*/
+
 .form-control {
 	width: 20%;
 }
@@ -5,6 +45,8 @@
 .social_login {
 	cursor: pointer;
 }
+
+
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
