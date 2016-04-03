@@ -46,7 +46,7 @@ class RelationshipsController < ApplicationController
 		
 		if update_successful
 			flash[:notice] = "Se ha guardado la información correctamente"
-			
+			redirect_to relationships_path
 		else
 			flash[:alert] = "Oops, ha habido algún problema al guardar la información"
 		end
