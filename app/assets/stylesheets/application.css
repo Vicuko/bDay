@@ -1,6 +1,31 @@
-#base_container {
-	padding-right: 0px;
-    padding-left: 0px;
+.footer {
+	position:fixed;
+	bottom:0;
+	width:100%;
+	height:60px;   /* Height of the footer */
+}
+
+.footer-top {
+	width:100%;
+	height:65%;
+	background:#F8F8F8;
+	text-align: center
+}
+
+.footer-bottom {
+	width:100%;
+	height:35%;
+	background:#000;
+	vertical-align: middle;
+}
+
+.ftext {
+	text-align: center;
+	vertical-align: middle;
+	font-family: 'Satisfy', sans-serif;
+	font-style: cursive;
+	font-weight: 300;
+	color:white;
 }
 
 .max-space {
@@ -12,12 +37,21 @@
 	margin-bottom: 0px;
 }
 
-#casita {
+#animated-glyphicon {
 	-webkit-transition: color 0.5s;
 }
 
-#casita:hover {
+#animated-glyphicon:hover {
 	color:orange;
+}
+
+#base_container {
+	padding-right: 0px;
+    padding-left: 0px;
+}
+
+#love {
+	color:red;
 }
 
 /*.topbar {

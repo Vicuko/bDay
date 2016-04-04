@@ -8,31 +8,31 @@
 		        <span class="icon-bar"></span>
       		</button>
     		<a class="navbar-brand" href="/">
-    			<span class="glyphicon glyphicon-home" id="casita" aria-hidden="true">
+    			<span class="glyphicon glyphicon-home" id="animated-glyphicon" aria-hidden="true">
     			</span>
 			</a>
 		</div>
 
 		<% if user_signed_in? %>
 
-		<div class="collapse navbar-collapse navbar-right" id="nav_menu">
-			
-			<%= link_to button_tag('Profile', class: 'btn btn-success navbar-btn'), show_user_path, :method => 'get'%>
+			<div class="collapse navbar-collapse navbar-right" id="nav_menu">
+				
+				<%= link_to button_tag('Profile', class: 'btn btn-success navbar-btn'), show_user_path, :method => 'get'%>
 
-			<%= link_to button_tag('Sign out', class: 'btn btn-danger btn navbar-btn'), destroy_user_session_path, :method => 'delete'%>
+				<%= link_to button_tag('Sign out', class: 'btn btn-danger btn navbar-btn'), destroy_user_session_path, :method => 'delete'%>
 
-		</div>
+			</div>
 
 		<% else %>
 
-		<div class="collapse navbar-collapse navbar-right" id="nav_menu">
+			<div class="collapse navbar-collapse navbar-right" id="nav_menu">
+				
+				<%= link_to button_tag('Sign in', class: 'btn btn-success navbar-btn'), new_user_session_path, :method => 'get'%>
+
+				<%= link_to button_tag('Sign Up', class: 'btn btn-primary btn navbar-btn'), new_user_registration_path, :method => 'get'%>
 			
-			<%= link_to button_tag('Sign in', class: 'btn btn-success navbar-btn'), new_user_session_path, :method => 'get'%>
-
-			<%= link_to button_tag('Sign Up', class: 'btn btn-primary btn navbar-btn'), new_user_registration_path, :method => 'get'%>
+			</div>
 		
-		</div>
-
 		<% end %>
 	</div>
 </nav>
