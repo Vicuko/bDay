@@ -2,7 +2,7 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   mount Sidekiq::Web, at: '/sidekiq'
   root to: 'site#index'
-  devise_for :users, controllers: { registrations: "users/registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, controllers: {passwords: "users/passwords", sessions: "users/sessions", registrations: "users/registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
   get '/users/show', to: 'users#show', as: "show_user"
   get '/users/edit_profile', to: 'users#edit', as: "edit_user"
   patch '/users/edit_profile', to: 'users#update', as: ""

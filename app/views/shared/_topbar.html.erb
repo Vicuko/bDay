@@ -17,9 +17,9 @@
 
 			<div class="collapse navbar-collapse navbar-right" id="nav_menu">
 				
-				<%= link_to button_tag('Profile', class: 'btn btn-success navbar-btn'), show_user_path, :method => 'get'%>
+				<%= link_to button_tag('Profile', class: 'btn btn-success navbar-btn menu-drop-btn'), show_user_path, :method => 'get'%>
 
-				<%= link_to button_tag('Sign out', class: 'btn btn-danger btn navbar-btn'), destroy_user_session_path, :method => 'delete'%>
+				<%= link_to button_tag('Sign out', class: 'btn btn-danger btn navbar-btn menu-drop-btn'), destroy_user_session_path, :method => 'delete'%>
 
 			</div>
 
@@ -27,9 +27,9 @@
 
 			<div class="collapse navbar-collapse navbar-right" id="nav_menu">
 				
-				<%= link_to button_tag('Sign in', class: 'btn btn-success navbar-btn'), new_user_session_path, :method => 'get'%>
+				<%= link_to button_tag('Sign in', class: 'btn btn-success navbar-btn menu-drop-btn'), new_user_session_path, :method => 'get'%>
 
-				<%= link_to button_tag('Sign Up', class: 'btn btn-primary btn navbar-btn'), new_user_registration_path, :method => 'get'%>
+				<%= link_to button_tag('Sign Up', class: 'btn btn-primary btn navbar-btn menu-drop-btn'), new_user_registration_path, :method => 'get'%>
 			
 			</div>
 		
