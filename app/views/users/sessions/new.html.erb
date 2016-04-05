@@ -19,11 +19,15 @@
       </label>
     </div>
   <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Sign in", class:"btn btn-success" %>
+<div class="row max-width">
+  <div class="col-xs-4 left">
+    <div class="actions left">
+      <%= f.submit "Sign in", class:"btn btn-success left" %>
+    </div>
+  </div>
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+
 </div>
+<%= render "users/shared/links" %>
