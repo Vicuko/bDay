@@ -15,33 +15,16 @@
 	<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
 
 </head>
-<body>
+<body class="max-space">
 	<%= render partial: "/shared/topbar"%>
 	<%= render partial: "/shared/notifications"%>
+	<div class="container-fluid max-space">
 
-	<div>
-
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-  </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home"><%= yield %></div>
-    <div role="tabpanel" class="tab-pane" id="profile"><%= render action: :"relationships_index" %></div>
-    <div role="tabpanel" class="tab-pane" id="messages">...</div>
-  </div>
-
-</div>
-	<%= render partial: "/shared/useroptions" %>
-	<section class="container-fluid max-space">
+		<%=yield %>
 		
 		<%= render partial: "/shared/buttonset" %>
-	</section>
-		<%= render partial: "/shared/footer"%>
+	</div>
+	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </body>
 </html>

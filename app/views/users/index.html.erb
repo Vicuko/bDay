@@ -1,0 +1,35 @@
+<div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#contacts" aria-controls="contacts" role="tab" data-toggle="tab">Contactos</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Perfil</a></li>
+    <li role="presentation"><a href="#history" aria-controls="history" role="tab" data-toggle="tab">Histórico</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+
+    <div role="tabpanel" class="tab-pane fade in active" id="contacts">
+		<div class="container-fluid max-width">
+    		<%= render "users/shared/relationships.html.erb" %>
+    	</div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane fade" id="profile">
+    	<div class="container-fluid max-width">
+    		<%= render "users/shared/show.html.erb" %>
+    	</div>
+    </div>
+    
+    <div role="tabpanel" class="tab-pane fade" id="history">
+    	<div class="container-fluid max-width">
+    		<%= render "users/shared/history.html.erb" %>
+    	</div>
+    </div>
+
+  </div>
+
+</div>
+
+
+

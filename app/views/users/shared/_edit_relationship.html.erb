@@ -4,32 +4,41 @@
   gg_status = user_active_networks[:google_oauth2]
 %>
 
-<%= button_to 'Añadir', new_relationship_path, :method => 'get', class: 'btn btn-default btn-sm tpnt_button pull-left'%>
 <div>
 <%= form_for(resource, as: resource_name, url: relationships_path(resource_name), html: { method: :put }) do |user| %>
 
-  <section>
-    <div class="actions">
-      <%= user.submit "Guardar" %>
-    </div>
-  </section>
-
   <%= user.fields_for :relationships do |rel| %>
-    <section>
-      <h4><%=rel.text_field :nickname%></h4>
+    <section class="row">
+      <div class="col-xs-3">
+        <% if rel.object.picture.present?
+              img_url = :picture
+            else
+              img_url = "/images/avatar.svg"
+            end %>
+
+        <%=image_tag("#{img_url}", class:"img-circle img-responsive") %>
+           
+      </div>
+      <div class="col-xs-9 no-padding-left left">
+        <h4><%=rel.text_field :nickname, class:"max-width"%></h4>
+      </div>
     </section>
     
-    <section>
+    <section class="row">
+
+      <div class="col-xs-12 left">
         <%= rel.label :Email %>
         <%= rel.text_field :email, autofocus: true %>
-        <%= rel.label :Birthday %>
+      </div>
+      <div class="col-xs-9 left">
+        <%= rel.label :Bday %>
         <%= rel.date_select :send_date, discard_year: true, autofocus: true %>
+      </div>
     </section>
     
     <section>
-      <%= rel.fields_for :messages do |f| %>
+    <%= rel.fields_for :messages do |f| %>
       <% if not f.object.message_sent %> 
-
         <% if rel.object.email.present? %>
           <%= f.check_box :send_email, class: "checkbox_inline"%>
           Email
@@ -70,15 +79,23 @@
           <%= f.text_area :message, class: "form-control", rows:"3",  autofocus: true %>         
         </div>
 
+      <%= link_to button_tag('Enviar ahora', class: 'btn btn-primary'), relationship_message_now_path(relationship_id: rel.object.id, message_id: f.object.id), method: :put%>
+
+      <%= link_to button_tag('Eliminar', class: 'btn btn-danger'), relationships_path(relationship_id: rel.object.id), method: :delete%> 
+
       <% end %>
-      Send<%= rel.check_box :send_message, class: "checkbox_inline"%> 
     <% end %>  
+    
+    Send <%= rel.check_box :send_message, class: "checkbox_inline"%> 
+
     </section>
-      
-    <% end %>
-    <div class="actions">
+         <div class="actions">
       <%= user.submit "Guardar" %>
     </div>
+    <% end %>
+    <%= button_to 'Añadir', user_index_path, :method => 'get', class: 'btn btn-default btn-sm'%>
+  
+
   <% end %>
   </div>
 

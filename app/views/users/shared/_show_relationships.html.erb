@@ -1,0 +1,103 @@
+<%  
+  fb_status = user_active_networks[:facebook]
+  tw_status = user_active_networks[:twitter]
+  gg_status = user_active_networks[:google_oauth2]
+%>
+
+<div>
+<%= form_for(resource, as: resource_name, url: relationships_path(resource_name), html: { method: :put }) do |user| %>
+
+  <%= user.fields_for :relationships do |rel| %>
+    <section class="row">
+      <div class="col-xs-3">
+        <% if rel.object.picture.present?
+              img_url = :picture
+            else
+              img_url = "/images/avatar.svg"
+            end %>
+
+        <%=image_tag("#{img_url}", class:"img-circle img-responsive") %>
+           
+      </div>
+      <div class="col-xs-9 no-padding-left left">
+        <h4><%=rel.text_field :nickname, class:"max-width"%></h4>
+      </div>
+    </section>
+    
+    <section class="row">
+
+      <div class="col-xs-12 left">
+        <%= rel.label :Email %>
+        <%= rel.text_field :email, autofocus: true %>
+      </div>
+      <div class="col-xs-9 left">
+        <%= rel.label :Bday %>
+        <%= rel.date_select :send_date, discard_year: true, autofocus: true %>
+      </div>
+    </section>
+    
+    <section>
+    <%= rel.fields_for :messages do |f| %>
+      <% if not f.object.message_sent %> 
+        <% if rel.object.email.present? %>
+          <%= f.check_box :send_email, class: "checkbox_inline"%>
+          Email
+        <% else %>
+          <%= f.check_box :send_email, class: "checkbox_inline", disabled: true%>
+          Email
+        <% end %>
+
+
+        <% if fb_status and rel.object.fb_connected %>
+          <%= f.check_box :send_fb, class: "checkbox_inline"%>
+          Facebook
+        <% else %>
+          <%= f.check_box :send_fb, class: "checkbox_inline", disabled: true%>
+          Facebook
+        <% end %>
+
+
+        <% if tw_status and rel.object.tw_connected %>
+          <%= f.check_box :send_tw, class: "checkbox_inline"%>
+          Twitter    
+        <% else %>
+          <%= f.check_box :send_tw, class: "checkbox_inline", disabled: true%>
+          Twitter
+        <% end %>
+
+
+        <% if gg_status and rel.object.gg_connected %>
+          <%= f.check_box :send_gg, class: "checkbox_inline"%>
+          Google    
+        <% else %>
+          <%= f.check_box :send_gg, class: "checkbox_inline", disabled: true%>
+          Google
+        <% end %>
+
+        <div>
+          <%= f.label :"Mensaje:" %><br>
+          <%= f.text_area :message, class: "form-control", rows:"3",  autofocus: true %>         
+        </div>
+
+      <%= link_to button_tag('Enviar ahora', class: 'btn btn-primary'), relationship_message_now_path(relationship_id: rel.object.id, message_id: f.object.id), method: :put%>
+
+      <%= link_to button_tag('Eliminar', class: 'btn btn-danger'), relationships_path(relationship_id: rel.object.id), method: :delete%> 
+
+      <% end %>
+    <% end %>  
+    
+    Send <%= rel.check_box :send_message, class: "checkbox_inline"%> 
+
+    </section>
+         <div class="actions">
+      <%= user.submit "Guardar" %>
+    </div>
+    <% end %>
+    <%= button_to 'Añadir', user_index_path, :method => 'get', class: 'btn btn-default btn-sm'%>
+  
+
+  <% end %>
+  </div>
+
+
+

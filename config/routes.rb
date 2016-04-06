@@ -3,13 +3,16 @@ Rails.application.routes.draw do
   mount Sidekiq::Web, at: '/sidekiq'
   root to: 'site#index'
   devise_for :users, controllers: {passwords: "users/passwords", sessions: "users/sessions", registrations: "users/registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
-  get '/users/show', to: 'users#show', as: "show_user"
+  get '/users/index', to: 'users#index', as: "user_index"
   get '/users/edit_profile', to: 'users#edit', as: "edit_user"
   patch '/users/edit_profile', to: 'users#update', as: ""
   put '/users/edit_profile', to: 'users#update', as: ""
-  resources :relationships, only: [:index, :new, :create]
+  resources :relationships, only: [:create]
   patch '/relationships', to: 'relationships#update', as: ""
   put '/relationships', to: 'relationships#update', as: ""
+  delete '/relationships', to: 'relationships#destroy', as: ""
+  put '/relationships/message_now', to: 'relationships#message_now', as: "relationship_message_now"
+  patch '/relationships/message_now', to: 'relationships#message_now', as: ""
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -17,7 +17,7 @@
 
 			<div class="collapse navbar-collapse navbar-right" id="nav_menu">
 				
-				<%= link_to button_tag('Profile', class: 'btn btn-success navbar-btn menu-drop-btn'), show_user_path, :method => 'get'%>
+				<%= link_to button_tag('Profile', class: 'btn btn-success navbar-btn menu-drop-btn'), user_index_path, :method => 'get'%>
 
 				<%= link_to button_tag('Sign out', class: 'btn btn-danger btn navbar-btn menu-drop-btn'), destroy_user_session_path, :method => 'delete'%>
 

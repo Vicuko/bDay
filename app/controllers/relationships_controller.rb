@@ -2,9 +2,9 @@ class RelationshipsController < ApplicationController
 	before_action :authenticate_user!
 	layout "users"
 
-	def index
-		@user_active_networks = get_user_active_networks(current_user)
-	end
+	# def index
+	# 	@user_active_networks = get_user_active_networks(current_user)
+	# end
 
 	def create
 		name = relationship_params[:nickname].split[0] || ""
@@ -23,17 +23,17 @@ class RelationshipsController < ApplicationController
           rel=clean_date(rel)
       		rel_id = Relationship.find_or_create(rel)
       		if Message.create(relationship_id: rel_id)
-       			redirect_to relationships_path
+       			redirect_to user_index_path
       		else
       			flash[:alert] = "Oops, there was a problem creating your contact. Please try again."
-      			render new_relationship
+      			render nothing: true
       		end
       	end
 	end
 
-	def new
-		@relationship = Relationship.new
-	end
+	# def new
+	# 	@relationship = Relationship.new
+	# end
 
 	def update
 		update_successful = true
@@ -46,11 +46,43 @@ class RelationshipsController < ApplicationController
 		
 		if update_successful
 			flash[:notice] = "Se ha guardado la información correctamente"
-			redirect_to relationships_path
+			redirect_to user_index_path
 		else
-			flash[:alert] = "Oops, ha habido algún problema al guardar la información"
+			flash[:alert] = "Ups, ha habido algún problema al guardar la información"
+      redirect_to user_index_path
 		end
 	end
+
+  def destroy
+    relationship = Relationship.find_by("id=?",params[:relationship_id])
+    binding.pry
+    if relationship.persisted?
+      relationship.destroy
+      redirect_to user_index_path
+    else
+      flash[:alert] = "Ups, ha habido algún problema al guardar la información"
+      redirect_to user_index_path
+    end
+  end
+
+  def message_now
+    relationship = Relationship.find_by("id=?",params[:relationship_id])
+    message = Message.find_by("id=?",params[:message_id])
+    if message.persisted? and relationship.persisted?
+      if message.send_email or message.send_fb or message.send_tw or message.send_gg
+        DeliverMessage.perform_async(relationship.id, message.id)
+        flash[:notice] = "Se ha enviado tu mensaje correctamente"
+        redirect_to user_index_path
+      else
+        flash[:alert] = "Tienes que seleccionar un método de envío para poder mandar el mensaje"
+        redirect_to user_index_path
+      end
+    else
+        flash[:alert] = "Ups, ha habido algún problema al guardar la información"
+        redirect_to user_index_path
+    end
+
+  end
 	
 private
 
@@ -85,40 +117,44 @@ private
     end
 
     def msge(relationship)
-		Message.find(relationship[1][:messages_attributes].values[0][:id])
+		  Message.find(relationship[1][:messages_attributes].values[0][:id])
     end
 
     def msge_update_params(relationship)
     	rel = relationship[1].clone
-    	message = rel[:messages_attributes].values[0]
-    	message.delete("id")
-    	return message
+    	rel[:messages_attributes].values.each do |value|
+        value.delete("id")
+        if value.present?
+          message = value
+          return message
+        end
+      end
     end
 
 
 
 
-    def get_user_active_networks(user)
-    	networks = existing_networks
-    	user_networks = get_user_networks (user)
-    	networks.each do |network,value|
-    		if user_networks.include?(network.to_s)
-    			networks[network]=true    		
-    		end
-		  end
-      return networks
-	  end
+ #    def get_user_active_networks(user)
+ #    	networks = existing_networks
+ #    	user_networks = get_user_networks (user)
+ #    	networks.each do |network,value|
+ #    		if user_networks.include?(network.to_s)
+ #    			networks[network]=true    		
+ #    		end
+	# 	  end
+ #      return networks
+	#   end
 
-	def existing_networks
-		{facebook: false, twitter: false, google_oauth2: false}
-	end
+	# def existing_networks
+	# 	{facebook: false, twitter: false, google_oauth2: false}
+	# end
 
-	def get_user_networks (user)
-		networks = []
-		user.social_networks.select("provider").each do |network|
-			networks << network.provider
-		end
-		return networks
-	end
+	# def get_user_networks (user)
+	# 	networks = []
+	# 	user.social_networks.select("provider").each do |network|
+	# 		networks << network.provider
+	# 	end
+	# 	return networks
+	# end
 
 end	

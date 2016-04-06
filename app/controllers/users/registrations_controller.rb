@@ -25,7 +25,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
    def destroy
-    binding.pry
     user_unsign_up
     Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
     flash[:notice] = "Account succesfully cancelled"
