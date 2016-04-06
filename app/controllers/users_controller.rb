@@ -17,6 +17,10 @@ before_action :authenticate_user!
 	      end
 	end
 
+	def relationships_index
+		RelationshipsController.index
+	end
+
 private
 	def user_params
       params.require(:user).permit(:name, :surname, :email, :bday, :city, :country, :language, :gender)
