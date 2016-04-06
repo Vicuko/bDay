@@ -13,21 +13,31 @@
   </div>
 
   <% if devise_mapping.rememberable? -%>
-    <div class="field checkbox">
+    <div class="field checkbox no-bot-margin">
       <label class="form-text-label">
         <%= f.check_box :remember_me%>Remember me
       </label>
     </div>
   <% end -%>
-<div class="row max-width">
+
+  <%= render "users/shared/links" %>
+
+<div class="row max-width no-margin">
   <div class="col-xs-4 left">
     <div class="actions left">
       <%= f.submit "Sign in", class:"btn btn-success left" %>
     </div>
   </div>
+  <div class="col-xs-8 no-padding">
+      <p class="right no-margin">Don't have an account yet?</p><br>
+      <% if devise_mapping.registerable? && controller_name != 'registrations' %>
+        <%= link_to "Sign up", new_registration_path(resource_name), class:"right" %><br />
+      <% end -%>
+      <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+    <%= link_to "Forgot your password?", new_password_path(resource_name), class:"right" %><br />
+  <% end -%>
   </div>
+</div>
 <% end %>
 
-
 </div>
-<%= render "users/shared/links" %>

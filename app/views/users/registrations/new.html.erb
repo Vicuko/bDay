@@ -26,8 +26,17 @@
     <%= f.label :"Cumpleaños :", class:"form-text-label" %><br />
     <%= f.date_field :bday,class:"form-control form-text-input", autofocus: true %>
   </div>
+  <%= render "users/shared/links" %>
 
   <div class="row max-width no-margin">
+    <div class="col-xs-8 no-padding">
+      <p class="right no-margin">Already have an account?</p><br>
+      <%- if controller_name != 'sessions' %>
+        <div class="col-xs-offset-1 col-xs-11 no-padding">
+        <%= link_to "Sign in", new_session_path(resource_name), class:"left" %>
+        </div>
+      <% end -%>
+    </div>
     <div class="col-xs-4 right no-padding">
       <div class="actions right">
         <%= f.submit "Sign up", class:"btn btn-primary right" %>
@@ -37,6 +46,5 @@
 <% end %>
 
 </div>
-<%= render "users/shared/links" %>
 
 
