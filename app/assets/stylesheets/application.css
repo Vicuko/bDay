@@ -146,6 +146,10 @@
 	height:30px;
 }
 
+.top-alerts{
+	text-align: center;
+}
+
 #animated-glyphicon {
 	-webkit-transition: color 0.5s;
 }
