@@ -36,11 +36,10 @@ class RelationshipsController < ApplicationController
 	# end
 
 	def update
-    binding.pry
 		update_successful = true
-		form_for_relationship_params[:relationships_attributes].each do |relationship|
-			relationship[1]=clean_date(relationship[1])
-			if not rel_find_by_id(relationship).update(rel_update_params(relationship)) or not msge(relationship).update(msge_update_params(relationship))
+		[form_for_relationship_params].each do |relationship|
+      relationship=clean_date(relationship)
+			if not rel_find_by_id(form_for_relationship_id).update(rel_update_params(relationship)) or not msge(form_for_relationship_message_id).update(msge_update_params(relationship))
 				update_successful = false
 			end
 		end
@@ -56,7 +55,6 @@ class RelationshipsController < ApplicationController
 
   def destroy
     relationship = Relationship.find_by("id=?",params[:relationship_id])
-    binding.pry
     if relationship.persisted?
       relationship.destroy
       redirect_to user_index_path
@@ -92,7 +90,15 @@ private
     end
 
     def form_for_relationship_params
-      params.require(:user).permit(relationships_attributes: [:id, :nickname, :email, :"send_date(1i)", :"send_date(2i)", :"send_date(3i)", :send_message, messages_attributes: [:message, :send_email, :send_fb, :send_tw, :send_gg, :id]])
+      params.require(:relationship).permit(:id, :nickname, :email, :"send_date(1i)", :"send_date(2i)", :"send_date(3i)", :send_message, messages_attributes: [:message, :send_email, :send_fb, :send_tw, :send_gg, :id])
+    end
+
+    def form_for_relationship_id
+      params.require(:relationship_id)
+    end
+
+    def form_for_relationship_message_id
+      params.require(:message_id)
     end
 
     
@@ -106,23 +112,24 @@ private
     end
 
 
-    def rel_find_by_id(relationship)
-    	Relationship.find(relationship[1][:id])
+    def rel_find_by_id(relationship_id)
+    	Relationship.find_by("id=?",relationship_id)
     end
 
     def rel_update_params(relationship)
-    	rel = relationship[1].clone
+    	rel = relationship.clone
     	rel.delete("id")
     	rel.delete("messages_attributes")
     	return rel
     end
 
-    def msge(relationship)
-		  Message.find(relationship[1][:messages_attributes].values[0][:id])
+    def msge(message_id)
+      binding.pry
+		  Message.find_by("id=?", message_id)
     end
 
     def msge_update_params(relationship)
-    	rel = relationship[1].clone
+    	rel = relationship.clone
     	rel[:messages_attributes].values.each do |value|
         value.delete("id")
         if value.present?

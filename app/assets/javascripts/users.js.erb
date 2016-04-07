@@ -17,7 +17,7 @@ $(document).on("ready", function () {
 render = function (relationship, message, fb_status, tw_status, gg_status) {
   console.log("Rendering relationship: #" + relationship.id);
   	if (relationship.id != null){
-      $(".edit-form").prop('action','/relationships?id='+relationship.id)}
+      $(".edit-form").prop('action','/relationships?relationship_id='+relationship.id+'&message_id='+message.id)}
     
     if (relationship.picture != null){
         $(".edit-img").prop('src',relationship.picture)}
