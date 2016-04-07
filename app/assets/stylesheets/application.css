@@ -2,6 +2,16 @@
 	max-width:50px;
 }
 
+.baja {
+	color:red;
+	font-size:10px;
+	vertical-align: middle;
+}
+
+.baja-label {
+	font-size:10px;
+	vertical-align: middle;
+}
 .bday-style{
 	color:orange;
 	font-family: 'Satisfy', sans-serif;
@@ -132,6 +142,10 @@
 
 .margin-top{
 	margin-top: 2%
+}
+
+.margin-bottom {
+	margin-bottom: 2%
 }
 
 .max-space {

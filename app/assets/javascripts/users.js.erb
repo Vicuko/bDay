@@ -10,11 +10,22 @@ $(document).on("ready", function () {
     var fb_status = $button.data().fbstatus
     var tw_status = $button.data().twstatus
     var gg_status = $button.data().ggstatus
-    render(relationship, message, fb_status, tw_status, gg_status)
+    render_relationship(relationship, message, fb_status, tw_status, gg_status)
   });
+
+  $(".edit_profile").on("click", function (event) {
+    var $button = $(event.currentTarget);
+    var form = 1;
+    var relationship = $button.data().relationship;
+    render_user(relationship, message, fb_status, tw_status, gg_status)
+  });
+
 });
 
-render = function (relationship, message, fb_status, tw_status, gg_status) {
+
+
+
+render_relationship = function (relationship, message, fb_status, tw_status, gg_status) {
   console.log("Rendering relationship: #" + relationship.id);
   	if (relationship.id != null){
       $(".edit-form").prop('action','/relationships?relationship_id='+relationship.id+'&message_id='+message.id)}

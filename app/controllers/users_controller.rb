@@ -15,7 +15,7 @@ before_action :authenticate_user!
 
 	def update
 	      if current_user.update_attributes(user_params)
-	        redirect_to action: 'show', notice: 'User was successfully updated.'
+	        redirect_to action: 'index', notice: 'User was successfully updated.'
 	      else
 	        render :edit, notice: 'User could not be updated'
 	      end

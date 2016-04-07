@@ -1,48 +1,64 @@
-<h2>Editar Perfil</h2>
+<h2 class="bday-style form-text-title">Perfil</h2>
 
-<%= form_for(resource, as: resource_name, url: edit_user_path(resource_name), html: { method: :put }) do |f| %>
+<div class="col-xs-12">
+<%= form_for(resource, as: resource_name, url: edit_user_path(resource_name), html: { method: :put}) do |f| %>
 
-  <div class="field">
-    <%= f.label :Nombre %><br />
-    <%= f.text_field :name, autofocus: true %>
+  <div class="form-group form-group-sm margin-bottom">
+    <%= f.label :Nombre, class:"form-text-label" %>
+    <%= f.text_field :name, autofocus: true, class:"form-control form-text-input" %>
   </div>
-  <div class="field">
-    <%= f.label :Apellidos %><br />
-    <%= f.text_field :surname, autofocus: true %>
+  <div class="form-group form-group-sm margin-bottom">
+    <%= f.label :Apellidos, class:"form-text-label" %>
+    <%= f.text_field :surname, autofocus: true, class:"form-control form-text-input" %>
   </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class="form-group form-group-sm margin-bottom">
+    <%= f.label :email, class:"form-text-label" %>
+    <%= f.email_field :email, autofocus: true, class:"form-control form-text-input" %>
   </div>
-  <div class="field">
-    <%= f.label :Cumpleaños %><br />
-    <%= f.date_field :bday, autofocus: true %>
+  <div class="form-group form-group-sm margin-bottom">
+    <%= f.label :Cumpleaños, class:"form-text-label" %>
+    <%= f.date_field :bday, autofocus: true, class:"form-control form-text-input" %>
   </div>
-  <div class="field">
-    <%= f.label :Ciudad %><br />
-    <%= f.text_field :city, autofocus: true %>
+  <div class="form-group form-group-sm margin-bottom">
+    <%= f.label :Ciudad, class:"form-text-label" %>
+    <%= f.text_field :city, autofocus: true, class:"form-control form-text-input" %>
   </div>
-  <div class="field">
-    <%= f.label :País %><br />
-    <%= f.text_field :country, autofocus: true %>
+  <div class="form-group form-group-sm margin-bottom">
+    <%= f.label :País, class:"form-text-label" %>
+    <%= f.text_field :country, autofocus: true, class:"form-control form-text-input" %>
   </div>
-  <div class="field">
-    <%= f.label :Idioma %><br />
-    <%= f.text_field :language, autofocus: true %>
+  <div class="form-group form-group-sm margin-bottom">
+    <%= f.label :Idioma, class:"form-text-label" %>
+    <%= f.text_field :language, autofocus: true, class:"form-control form-text-input" %>
   </div>
-  <div class="field">
-    <%= f.label :Género %><br />
+  <div class="form-group form-group-sm margin-bottom">
+    <%= f.label :Género, class:"form-text-label" %>
     <%= f.select :gender, [['Hombre',"m"],['Mujer',"f"],['Indefinido',"u"]] %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Guardar" %>
-  </div>
+</div>
+  <div class="row max-width no-margin">
+      <div class="col-xs-8 no-padding">   
+          <div class="col-xs-offset-1 col-xs-11 no-padding margin-top">
+          <%= link_to 'Modificar contraseña', edit_user_registration_path %>
+          </div>    
+      </div>
+      <div class="col-xs-4 right no-padding">
+        <div class="actions right">
+          <%= f.submit "Actualizar", class:"btn btn-primary right" %>
+        </div>
+      </div>
+    </div>
   <% end %>
-  <span>
-    <%= link_to 'Modificar contraseña', edit_user_registration_path %>
-  </span>
 
-  <h3>Dar de baja mi cuenta</h3>
-
-  <p>¿No estás content@? <%= button_to "Dar de baja", registration_path(resource_name), data: { confirm: "¿Estás segur@?" }, method: :delete %></p>
+  
+<div class="col-xs-12"> 
+  <div class="row">
+    <h6>Dar de baja mi cuenta</h6>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <span class="baja-label form-text-label">¿No estás content@?
+      <%= link_to "Dar de baja", registration_path(resource_name), data: { confirm: "¿Estás segur@?" }, method: :delete, class:"baja" %></span>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,119 @@
 <h2 class="bday-style form-text-title">Contactos</h2>
 
-	<%=render partial: "users/shared/show_relationships", locals: {user_active_networks: @user_active_networks} %>
+<%  
+  fb_status = @user_active_networks[:facebook]
+  tw_status = @user_active_networks[:twitter]
+  gg_status = @user_active_networks[:google_oauth2]
+%>
+<div>
+<%= form_for(resource, as: resource_name, url: user_index_path(resource_name), html: { method: :get }) do |user| %>
 
+  <%= user.fields_for :relationships do |rel| %>
+    <section class="row">
+      <div class="col-xs-3">
+        <% if rel.object.picture.present?
+              img_url = :picture
+            else
+              img_url = "/images/avatar.svg"
+            end %>
+
+        <%=image_tag("#{img_url}", class:"img-circle img-responsive avatar-img") %>
+           
+      </div>
+      <div class="col-xs-9 no-padding-left left">
+        <h4 class:"max-width"><%=rel.object.nickname%></h4>
+      </div>
+    </section>
+    
+    <section class="row">
+
+      <div class="col-xs-12 left margin-top">
+          <span class="info-label"><%= rel.label :"Email :" %></span>
+          <span class="info-field"><%= rel.object.email%></span>
+      </div>
+      <div class="col-xs-12 left">
+        <span class="info-label"><%= rel.label :"Bday :" %></span>
+        <span class="info-field"><%= rel.object.send_date.day%> de <%= @months[rel.object.send_date.month]%></span>
+      </div>
+
+    <%= rel.fields_for :messages do |f| %>
+      
+      <% if not f.object.message_sent %>
+      <div class="col-xs-12 left">
+      <h6 class="no-margin"> 
+        <% if f.object.send_email %>
+          <span class="glyphicon glyphicon-ok" id="correct-glyphicon"></span>
+        <% else %>
+          <span class="glyphicon glyphicon-remove" id = "wrong-glyphicon"></span>
+        <% end %>
+        Email
+
+
+        <% if f.object.send_fb %>
+          <div class="glyphicon glyphicon-ok" id="correct-glyphicon"></div>
+          Facebook
+        <% else %>
+          <div class="glyphicon glyphicon-remove" id = "wrong-glyphicon"></div>
+          Facebook
+        <% end %>
+
+
+        <% if f.object.send_tw %>
+          <div class="glyphicon glyphicon-ok" id="correct-glyphicon"></div>
+          Twitter    
+        <% else %>
+          <div class="glyphicon glyphicon-remove" id = "wrong-glyphicon"></div>
+          Twitter
+        <% end %>
+
+
+        <% if f.object.send_gg %>
+          <div class="glyphicon glyphicon-ok" id="correct-glyphicon"></div>
+          Google    
+        <% else %>
+          <div class="glyphicon glyphicon-remove" id = "wrong-glyphicon"></div>
+          Google
+        <% end %>
+      </h6>
+      </div>
+        <div class="col-xs-12 left margin-top">
+          <span class="info-label"><%= f.label :"Mensaje :" %></span><br>
+          <span class="info-field"><%= f.object.message%></span>
+        </div>
+        
+        <div class="col-xs-6 no-margin">
+        <%= content_tag "div", class:"btn btn-primary edit_modal", type:"button", 'data-target': "#edit_modal", 'data-toggle': "modal", data: {relationship: rel.object.attributes, message: f.object.attributes, fbstatus: fb_status, twstatus: tw_status, ggstatus: gg_status } do %> Editar <% end %> 
+        </div>
+
+        <div class="col-xs-offset-2 col-xs-4">
+           <div class="right">
+           <% if rel.object.send_message %>
+              <div class="glyphicon glyphicon-ok" id="correct-glyphicon"></div>
+           <% else %>
+              <div class="glyphicon glyphicon-remove" id = "wrong-glyphicon"></div>
+           <% end %>
+              <span class="info-label">Enviar</span>
+           </div>
+        </div>
+      </section>
+    <br>
+      <%= link_to button_tag('Enviar ahora', class: 'btn btn-primary'), relationship_message_now_path(relationship_id: rel.object.id, message_id: f.object.id), method: :put%>
+
+      <%= link_to button_tag('Eliminar contacto', class: 'btn btn-danger'), relationships_path(relationship_id: rel.object.id), method: :delete%> 
+
+      <% end %>
+    <% end %>  
+    
+ 
+
+    </section>
+         
+    <% end %>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_modal">Añadir contacto</button>
+
+  <% end %>
+  </div>
+
+<%=render partial: "users/shared/new_relationship", locals: {user_active_networks: @user_active_networks} %>
+
+<%=render partial: "users/shared/edit_relationship", locals: {user_active_networks: @user_active_networks} %>
