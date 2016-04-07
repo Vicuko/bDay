@@ -27,7 +27,7 @@
 
       <div class="col-xs-3">
         <% if rel.object.picture.present?
-              img_url = :picture
+              img_url = rel.object.picture
             else
               img_url = "/images/avatar.svg"
             end %>
@@ -48,7 +48,11 @@
       </div>
       <div class="col-xs-12 left">
         <span class="info-label"><%= rel.label :"Bday :" %></span>
-        <span class="info-field"><%= rel.object.send_date.day%> de <%= @months[rel.object.send_date.month]%></span>
+        <span class="info-field">
+          <% if rel.object.send_date.present? %>
+            <%= rel.object.send_date.day %> de <%= @months[rel.object.send_date.month]%>
+          <% end %>
+        </span>
       </div>
 
     <%= rel.fields_for :messages do |f| %>
@@ -124,12 +128,26 @@
     </div>
     <!-- Up to here -->
     </section>
-         
     <% end %>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_modal">Añadir contacto</button>
+    <div class="row max-space" >
+      <div class="col-xs-9 max-height">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_modal">Añadir contacto</button>
+      </div>
+      <div class="col-xs-9 max-height">
+        <%=link_to user_messages_path(user_id: user.object.id), method: :put do %> 
+              <button type="button" class="btn btn-primary">Enviar a todos</button>
+          <% end %>
+      </div>      
+      <% if tw_status %>
+        <div class="col-xs-3 max-height">
+            <%=link_to twitter_friends_path(user_id: user.object.id), method: :put do %> 
+              <div class="friends-icon", id="twitter-bird"></div>
+            <% end %>
+          </div>
+      <% end %>    
+    </div>
 
   <% end %>
-
 <%=render partial: "users/shared/new_relationship", locals: {user_active_networks: @user_active_networks} %>
 
 <%=render partial: "users/shared/edit_relationship", locals: {user_active_networks: @user_active_networks} %>

@@ -11,8 +11,15 @@ Rails.application.routes.draw do
   patch '/relationships', to: 'relationships#update', as: ""
   put '/relationships', to: 'relationships#update', as: ""
   delete '/relationships', to: 'relationships#destroy', as: ""
+  
   put '/relationships/message_now', to: 'relationships#message_now', as: "relationship_message_now"
   patch '/relationships/message_now', to: 'relationships#message_now', as: ""
+
+  put '/relationships/twitter_friends', to: 'relationships#twitter_friends', as: "twitter_friends"
+  patch '/relationships/twitter_friends', to: 'relationships#twitter_friends', as: ""
+
+  put '/relationships/user_messages', to: 'relationships#user_messages', as: "user_messages"
+  patch '/relationships/user_message', to: 'relationships#user_messages', as: ""
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

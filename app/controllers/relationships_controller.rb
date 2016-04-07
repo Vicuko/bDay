@@ -71,16 +71,37 @@ class RelationshipsController < ApplicationController
       if message.send_email or message.send_fb or message.send_tw or message.send_gg
         DeliverMessage.perform_async(relationship.id, message.id)
         flash[:notice] = "Se ha enviado tu mensaje correctamente"
-        redirect_to user_index_path
       else
         flash[:alert] = "Tienes que seleccionar un método de envío para poder mandar el mensaje"
-        redirect_to user_index_path
       end
+      redirect_to user_index_path
     else
         flash[:alert] = "Ups, ha habido algún problema al guardar la información"
         redirect_to user_index_path
     end
 
+  end
+
+  def twitter_friends
+    user = User.find_by("id=?",params[:user_id])
+    if current_user == user
+      TwitterFriends.perform_async(current_user.id)
+      flash[:notice] = "Estamos cargando tus contactos, en breve aparecerán en tu cuenta"
+    else
+      flash[:alert] = "Ups, parece que ha habido algún problema al solicitar tus contactos. Por favor, vuelve a intentarlo en unos minutos"
+    end
+    redirect_to user_index_path
+  end
+
+  def user_messages
+    user = User.find_by("id=?",params[:user_id])
+    if current_user == user
+      AutomaticallyDeliverUserMessages.perform_async(current_user.id)
+      flash[:notice] = "Estamos enviando tus mensajes. Gracias por tu paciencia"
+    else
+      flash[:alert] = "Ups, parece que ha habido algún problema. Vuelve a intentarlo en unos minutos"
+    end
+    redirect_to user_index_path
   end
 	
 private
@@ -124,7 +145,6 @@ private
     end
 
     def msge(message_id)
-      binding.pry
 		  Message.find_by("id=?", message_id)
     end
 

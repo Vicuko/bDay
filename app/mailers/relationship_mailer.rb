@@ -7,7 +7,6 @@ class RelationshipMailer < ApplicationMailer
 		@message = message
 		@url = "http://bday.today"
 		email_with_name = %("#{@relationship[:nickname]}" <#{@relationship[:email]}>)
-		binding.pry
 		mail(to: email_with_name, subject: "¡Felicidades #{@relationship[:nickname]}!")
 	end
 end

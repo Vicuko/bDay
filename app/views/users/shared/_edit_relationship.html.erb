@@ -39,8 +39,9 @@
 
               <div class="col-xs-12 left">
                 <h6 class="no-margin"> 
-                  <%= f.check_box :send_email, class: "checkbox_inline edit-mail"%>
+                  <%= f.check_box :send_email, value: f.object.send_email, class: "checkbox_inline edit-mail"%>
                   Email
+                  
                   
                   <%= f.check_box :send_fb, class: "checkbox_inline edit-fb"%>
                     Facebook

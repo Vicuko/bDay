@@ -1,7 +1,7 @@
 class SendTwitterMessage
 
 	include Sidekiq::Worker
-	sidekiq_options :retry => false
+	sidekiq_options :retry => 5
   	sidekiq_options queue: 'messages_distribution'
 
 

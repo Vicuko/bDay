@@ -13,12 +13,12 @@ $(document).on("ready", function () {
     render_relationship(relationship, message, fb_status, tw_status, gg_status)
   });
 
-  $(".edit_profile").on("click", function (event) {
-    var $button = $(event.currentTarget);
-    var form = 1;
-    var relationship = $button.data().relationship;
-    render_user(relationship, message, fb_status, tw_status, gg_status)
-  });
+  // $(".edit_profile").on("click", function (event) {
+  //   var $button = $(event.currentTarget);
+  //   var form = 1;
+  //   var relationship = $button.data().relationship;
+  //   render_user(relationship, message, fb_status, tw_status, gg_status)
+  // });
 
 });
 
@@ -27,7 +27,7 @@ $(document).on("ready", function () {
 
 render_relationship = function (relationship, message, fb_status, tw_status, gg_status) {
   console.log("Rendering relationship: #" + relationship.id);
-  	if (relationship.id != null){
+    if (relationship.id != null){
       $(".edit-form").prop('action','/relationships?relationship_id='+relationship.id+'&message_id='+message.id)}
     
     if (relationship.picture != null){
@@ -38,32 +38,32 @@ render_relationship = function (relationship, message, fb_status, tw_status, gg_
   	$(".edit-nickname").val(relationship.nickname)
     $(".edit-email").val(relationship.email)
     $(".edit-bday").val(relationship.send_date)
-    if (relationship.email != null){ 
-      $(".edit-mail").val(message.send_email)}
+    if (relationship.email != null && relationship.email != "" ){ 
+      $(".edit-mail").prop('checked',message.send_email)}
     else{
       $(".edit-mail").prop('disabled',true)
     };
     
     if (fb_status && relationship.fb_connected){
-      $(".edit-fb").val(message.send_fb)}
+      $(".edit-fb").prop('checked',message.send_fb)}
     else{
       $(".edit-fb").prop('disabled',true)
     };
     if (tw_status && relationship.tw_connected){
-      $(".edit-tw").val(message.send_tw)}
+      $(".edit-tw").prop('checked',message.send_tw)}
     else{
       $(".edit-tw").prop('disabled',true)
     };
 
     if (gg_status && relationship.gg_connected){
-      $(".edit-gg").val(message.send_gg)}
+      $(".edit-gg").prop('checked',message.send_gg)}
     else{
       $(".edit-gg").prop('disabled',true)
     };
 
     $(".edit-message").val(message.message)
 
-      $(".edit-send").val(relationship.send_message)
+      $(".edit-send").prop('checked',relationship.send_message)
     };	
   	  	
 

@@ -22,31 +22,19 @@
     		<section class="row">
    
 	        <div class="col-xs-12 left margin-top">
-	          <span class="info-label"><%= message.label :"Mensaje :" %></span><br>
+	          <span class="info-label"><%= message.label :"Mensaje :" %></span>
 	          <span class="info-field"><%= message.object.message%></span>
 	        </div>
-	        
-	        <div class="col-xs-6 no-margin">
-	        <%= content_tag "div", class:"btn btn-primary edit_modal", type:"button", 'data-target': "#edit_modal", 'data-toggle': "modal", data: {} do %> Editar <% end %> 
-	        </div>
-
-        
+	                
       		</section>
    
-	    	<%= link_to button_tag('Enviar ahora', class: 'btn btn-primary'), relationship_message_now_path(relationship_id: rel.object.id, message_id: message.object.id), method: :put%>
-
-	      	<%= link_to button_tag('Eliminar contacto', class: 'btn btn-danger'), relationships_path(relationship_id: rel.object.id), method: :delete%> 
-
+	    	
+	<!-- Here is closed the accordion -->
+				</div>
+			</div>
+		</div>
+	<!-- Up to here -->
       	<% end %>
     <% end %>  
-    <!-- Here is closed the accordion -->
-        </div>
-      </div>
-    </div>
-    <!-- Up to here -->
-    
-         
     <% end %>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_modal">Añadir contacto</button>
-
   <% end %>
