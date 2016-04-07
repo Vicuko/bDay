@@ -80,7 +80,7 @@
         </div>
         
         <div class="col-xs-6 no-margin">
-          <button type="button" class="btn btn-primary edit_modal" data-toggle="modal" data-target="#edit_modal" data-button-action="Editar" >Editar</button>
+        <%= content_tag "div", class:"btn btn-primary edit_modal", type:"button", 'data-target': "#edit_modal", 'data-toggle': "modal", data: {relationship: rel.object.attributes, message: f.object.attributes, fbstatus: fb_status, twstatus: tw_status, ggstatus: gg_status } do %> Editar <% end %> 
         </div>
 
         <div class="col-xs-offset-2 col-xs-4">
@@ -107,7 +107,7 @@
     </section>
          
     <% end %>
-    <button type="button" class="btn btn-primary user_modal" data-toggle="modal" data-target="#add_modal" data-button-action="Editar" >Añadir contacto</button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_modal">Añadir contacto</button>
 
   <% end %>
   </div>

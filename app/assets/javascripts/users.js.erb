@@ -5,28 +5,55 @@ $(document).on("ready", function () {
 	
   $(".edit_modal").on("click", function (event) {
     var $button = $(event.currentTarget);
-    var title = $button.data("button-action");
-    var content = $button.data("button-action");
-    var relationship_object = $button.data("relationship");
-
-
-
-
-    render(relationship_object, content)
+    var relationship = $button.data().relationship;
+    var message = $button.data().message;
+    var fb_status = $button.data().fbstatus
+    var tw_status = $button.data().twstatus
+    var gg_status = $button.data().ggstatus
+    render(relationship, message, fb_status, tw_status, gg_status)
   });
 });
 
-render = function (relationship, title, content) {
-  console.log("Rendering relationship: #" + relationship);
-    $(".modal-title").text(content);
-  	$(".edit-image").html('<img src="" class:"img-circle img-responsive">');
-  		  
+render = function (relationship, message, fb_status, tw_status, gg_status) {
+  console.log("Rendering relationship: #" + relationship.id);
+  	if (relationship.id != null){
+      $(".edit-form").prop('action','/relationships?id='+relationship.id)}
+    
+    if (relationship.picture != null){
+        $(".edit-img").prop('src',relationship.picture)}
+    else{
+        $(".edit-img").prop('src','/images/avatar.svg')
+    };
+  	$(".edit-nickname").val(relationship.nickname)
+    $(".edit-email").val(relationship.email)
+    $(".edit-bday").val(relationship.send_date)
+    if (relationship.email != null){ 
+      $(".edit-mail").val(message.send_email)}
+    else{
+      $(".edit-mail").prop('disabled',true)
+    };
+    
+    if (fb_status && relationship.fb_connected){
+      $(".edit-fb").val(message.send_fb)}
+    else{
+      $(".edit-fb").prop('disabled',true)
+    };
+    if (tw_status && relationship.tw_connected){
+      $(".edit-tw").val(message.send_tw)}
+    else{
+      $(".edit-tw").prop('disabled',true)
+    };
 
-  	$(".edit-nickname").html("")
-  	$(".edit-email").html('<label for="exampleInputEmail1">Email address</label><h4><input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"></h4>');
+    if (gg_status && relationship.gg_connected){
+      $(".edit-gg").val(message.send_gg)}
+    else{
+      $(".edit-gg").prop('disabled',true)
+    };
 
-  	$(".edit-bday").html('<label for="Bday">Bday</label><input type="date" class="form-control" id="Bday">');
-	};	
+    $(".edit-message").val(message.message)
+
+      $(".edit-send").val(relationship.send_message)
+    };	
   	  	
 
   	
