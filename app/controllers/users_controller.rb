@@ -4,6 +4,9 @@ before_action :authenticate_user!
 	def index
 		@user_active_networks = get_user_active_networks(current_user)
 		@relationship = Relationship.new
+		@message = Message.new
+		@months = I18n.t :"date.month_names", locale: :es
+
 	end
 
 	def edit

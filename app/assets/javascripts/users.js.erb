@@ -1,0 +1,37 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+
+$(document).on("ready", function () {
+	
+  $(".edit_modal").on("click", function (event) {
+    var $button = $(event.currentTarget);
+    var title = $button.data("button-action");
+    var content = $button.data("button-action");
+    var relationship_object = $button.data("relationship");
+
+
+
+
+    render(relationship_object, content)
+  });
+});
+
+render = function (relationship, title, content) {
+  console.log("Rendering relationship: #" + relationship);
+    $(".modal-title").text(content);
+  	$(".edit-image").html('<img src="" class:"img-circle img-responsive">');
+  		  
+
+  	$(".edit-nickname").html("")
+  	$(".edit-email").html('<label for="exampleInputEmail1">Email address</label><h4><input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"></h4>');
+
+  	$(".edit-bday").html('<label for="Bday">Bday</label><input type="date" class="form-control" id="Bday">');
+	};	
+  	  	
+
+  	
+
+        
+
+
+

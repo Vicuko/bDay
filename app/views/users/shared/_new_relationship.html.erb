@@ -1,5 +1,45 @@
-<h2>Crear Contacto</h2>
+<div class="modal fade" id="add_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-box">
+        <button class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+        <h3 class="modal-title bday-style form-text-title">
+        Añadir contacto
+        </h3>
+      </div><!-- .modal-header -->
 
-<%=render partial: "users/shared/new_relationship_form", locals: {user_active_networks: @relationship} %>
+      <div class="modal-body">
+        <%= form_for(@relationship, url: relationships_path(@relationship), html: { method: :post }) do |rel| %>
+
+        <section>
+
+          <%= rel.label :Nombre %>
+              <%= rel.text_field :nickname, autofocus: true %>        
+          <br>
+          <%= rel.label :Email %>
+              <%= rel.text_field :email, autofocus: true %>
+          <br>
+              <%= rel.label :Cumpleaños %>
+               <%= rel.date_select :send_date, discard_year:true, autofocus: true %>
+
+        </section>
+
+        <div class="actions">
+            <%= rel.submit "Crear" %>
+        </div>
+
+        <% end %>
+        
+      </div><!-- .modal-body -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- .modal-content -->
+  </div><!-- .modal-dialog -->
+</div><!-- .modal -->
+
 
 

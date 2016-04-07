@@ -1,8 +1,16 @@
+.avatar-img {
+	max-width:50px;
+}
+
 .bday-style{
 	color:orange;
 	font-family: 'Satisfy', sans-serif;
 	font-style: cursive;
 	font-weight: 300;
+}
+
+.bday-background {
+	background-color: orange;
 }
 
 .entry-form {
@@ -54,6 +62,20 @@
 
 .form-text-title{
 	text-align: center;
+}
+
+.info-label {
+	color:black;
+	font-family: sans-serif;
+	font-style: cursive;
+	font-weight: 300;
+}
+
+.info-field {
+	color:blue;
+	font-family: 'Satisfy', sans-serif;
+	font-style: cursive;
+	font-weight: 300;
 }
 
 .right {
@@ -108,6 +130,10 @@
 	margin:0;
 }
 
+.margin-top{
+	margin-top: 2%
+}
+
 .max-space {
 	height: 100%;
 	width: 100%;
@@ -123,6 +149,10 @@
 
 .menu-drop-btn {
 	
+}
+
+.modal-header-box{
+	padding-bottom:1%;
 }
 
 .no-bottom {
@@ -159,6 +189,14 @@
 
 #animated-glyphicon:hover {
 	color:orange;
+}
+
+#correct-glyphicon {
+	color:green;
+}
+
+#wrong-glyphicon {
+	color:red;
 }
 
 #base_container {

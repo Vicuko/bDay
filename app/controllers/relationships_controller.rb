@@ -36,6 +36,7 @@ class RelationshipsController < ApplicationController
 	# end
 
 	def update
+    binding.pry
 		update_successful = true
 		form_for_relationship_params[:relationships_attributes].each do |relationship|
 			relationship[1]=clean_date(relationship[1])
