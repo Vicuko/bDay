@@ -1,3 +1,9 @@
+.accordion-margins {
+	margin-left: 5%;
+	margin-right: 2%;
+	margin-top: 2%;
+}
+
 .avatar-img {
 	max-width:50px;
 }

@@ -5,11 +5,26 @@
   tw_status = @user_active_networks[:twitter]
   gg_status = @user_active_networks[:google_oauth2]
 %>
-<div>
+
 <%= form_for(resource, as: resource_name, url: user_index_path(resource_name), html: { method: :get }) do |user| %>
 
   <%= user.fields_for :relationships do |rel| %>
+
+  <!-- Here are the parameters -->
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title form-text-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href=<%="#r#{rel.object.id}"%> aria-expanded="false" aria-controls="collapseOne">
+          <%= rel.object.nickname %>
+        </a>
+      </h4>
+    </div>
+    <div id=<%="r#{rel.object.id}"%> class="panel-collapse collapse accordion-margins" role="tabpanel" aria-labelledby="headingOne">
+    
+    <!-- Here begins the form -->
     <section class="row">
+
       <div class="col-xs-3">
         <% if rel.object.picture.present?
               img_url = :picture
@@ -103,16 +118,17 @@
 
       <% end %>
     <% end %>  
-    
- 
-
+    <!-- Here is closed the accordion -->
+        </div>
+      </div>
+    </div>
+    <!-- Up to here -->
     </section>
          
     <% end %>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_modal">Añadir contacto</button>
 
   <% end %>
-  </div>
 
 <%=render partial: "users/shared/new_relationship", locals: {user_active_networks: @user_active_networks} %>
 
