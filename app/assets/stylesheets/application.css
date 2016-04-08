@@ -1,3 +1,91 @@
+@media (max-width: 320px){
+	.back-main{
+		min-height:150px;
+		height:100%;
+		width:100%;
+	}
+	.main-intro-bday-style{
+		font-size:15px;
+	}
+}
+
+@media (min-width:321px) and (max-width: 400px){
+	.back-main{
+		min-height:170px;
+		height:100%;
+		width:100%;
+	}
+	.main-intro-bday-style{
+		font-size:15px;
+	}
+}
+
+@media (min-width:401px) and (max-width: 500px){
+	.back-main{
+		min-height:215px;
+		height:100%;
+		width:100%;
+	}
+	.main-intro-bday-style{
+		font-size:21px;
+	}
+}
+
+@media (min-width:501px) and (max-width: 600px){
+	.back-main{
+		min-height:270px;
+		height:100%;
+		width:100%;
+	}
+	.main-intro-bday-style{
+		font-size:27px;
+	}
+}
+
+@media (min-width:601px) and (max-width: 700px){
+	.back-main{
+		min-height:320px;
+		height:100%;
+		width:100%;
+	}
+	.main-intro-bday-style{
+		font-size:33px;
+	}
+}
+
+@media (min-width:701px) and (max-width: 800px){
+	.back-main{
+		min-height:400px;
+		height:100%;
+		width:100%;
+	}
+	.main-intro-bday-style{
+		font-size:38px;
+	}
+}
+
+@media (min-width:801px) and (max-width: 1000px){
+	.back-main{
+		min-height:460px;
+		height:100%;
+		width:100%;
+	}
+	.main-intro-bday-style{
+		font-size:43px;
+	}
+}
+
+@media (min-width:1001px){
+	.back-main{
+		min-height:580px;
+		height:100%;
+		width:100%;
+	}
+	.main-intro-bday-style{
+		font-size:50px;
+	}
+}
+
 .accordion-margins {
 	margin-left: 5%;
 	margin-right: 2%;
@@ -7,6 +95,14 @@
 .avatar-img {
 	max-width:50px;
 }
+
+.back-main{
+	background: url("/images/back-candles.png");
+	background-repeat: no-repeat;
+	overflow: hidden;
+	background-size: 100% auto;
+}
+
 
 .baja {
 	color:red;
@@ -36,6 +132,8 @@
 
 .f-logo {
 	height:100%;
+	min-height:20px;
+	max-height:32px;
 	width:100%;
 	margin-left: 35%;
 	margin-top: 2%;
@@ -48,9 +146,13 @@
 
 .footer {
 	position:fixed;
-	bottom:0;
+	bottom:0px;
 	width:100%;
 	height:12%;   /* Height of the footer */
+}
+
+.footer-correct{
+	height:12%;
 }
 
 .footer-top {
@@ -63,7 +165,8 @@
 .footer-bottom {
 	width:100%;
 	height:35%;
-	background:#000;
+	min-height: 25px;
+	background-color:#000;
 	vertical-align: middle;
 }
 
@@ -80,26 +183,18 @@
 	text-align: center;
 }
 
+.hline { 
+
+	margin:0 auto;
+	width:90%; 
+	height:1px; 
+	background: orange }
+
 .info-label {
 	color:black;
 	font-family: sans-serif;
 	font-style: cursive;
 	font-weight: 300;
-}
-
-.info-field {
-	color:blue;
-	font-family: 'Satisfy', sans-serif;
-	font-style: cursive;
-	font-weight: 300;
-}
-
-.right {
-	float:right;
-}
-
-.left{
-	float:left;
 }
 
 .friends-icon {
@@ -124,7 +219,7 @@
 	font-style: cursive;
 	font-weight: 300;
 	height:100%;
-	margin-top:1.5%;
+	margin-top:0.5%;
 	margin-left:2%;
 	color:white;
 }
@@ -147,11 +242,59 @@
     height: 100%;
 }
 
+.info-field {
+	color:blue;
+	font-family: 'Satisfy', sans-serif;
+	font-style: cursive;
+	font-weight: 300;
+}
+
+
+.left{
+	float:left;
+}
+
 .log-icon {
 	height:100%;
 	width:100%;
 	max-width:30px;
 	margin:0;
+}
+
+
+.main-circles{
+	content: ' \25CF';
+	border-width: 2px;
+	border-color: orange;
+}
+
+
+.main-icons{
+	align-content: center;
+	color:orange;
+}
+
+.main-intro-bday-style{
+	color:white;
+	font-family: 'Satisfy', sans-serif;
+	font-style: cursive;
+	font-weight: 300;
+	vertical-align:middle;
+	text-align: center;
+}
+
+.main-intro-padding{
+	text-align:center;
+	padding-top:18%;
+	padding-bottom:20%;
+}
+
+.main-parts-margin-bottom{
+	margin-bottom: 10%
+}
+
+.main-space{
+	height:10%;
 }
 
 .margin-top{
@@ -183,6 +326,18 @@
 	padding-bottom:1%;
 }
 
+.modal-max-width{
+	margin-left:5%;
+	margin-right:5%;
+}
+
+.navline { 
+
+	margin:0 auto;
+	width:100%; 
+	height:2px; 
+	background: orange }
+
 .no-bottom {
 	margin-bottom: 0px;
 }
@@ -202,6 +357,20 @@
 .no-padding-left {
 	padding-left: 0;
 }
+
+
+.right {
+	float:right;
+}
+
+.sign-margin-left{
+	margin-left:15px;
+}
+
+.sign-text{
+	font-size:12px;
+}
+
 .social-access {
 	margin:3%;
 	height:30px;

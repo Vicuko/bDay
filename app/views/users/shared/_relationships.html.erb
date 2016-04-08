@@ -15,7 +15,7 @@
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingOne">
       <h4 class="panel-title form-text-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href=<%="#r#{rel.object.id}"%> aria-expanded="false" aria-controls="collapseOne">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href=<%="#r#{rel.object.id}"%> aria-expanded="false" aria-controls="collapseOne" class="margin-bottom">
           <%= rel.object.nickname %>
         </a>
       </h4>
@@ -101,7 +101,9 @@
         </div>
         
         <div class="col-xs-6 no-margin">
-        <%= content_tag "div", class:"btn btn-primary edit_modal", type:"button", 'data-target': "#edit_modal", 'data-toggle': "modal", data: {relationship: rel.object.attributes, message: f.object.attributes, fbstatus: fb_status, twstatus: tw_status, ggstatus: gg_status } do %> Editar <% end %> 
+        <%= content_tag "div", class:"btn btn-primary edit_modal margin-bottom", type:"button", 'data-target': "#edit_modal", 'data-toggle': "modal", data: {relationship: rel.object.attributes, message: f.object.attributes, fbstatus: fb_status, twstatus: tw_status, ggstatus: gg_status } do %> Editar <% end %> 
+        <%= link_to button_tag('Enviar ahora', class: 'btn btn-success margin-bottom'), relationship_message_now_path(relationship_id: rel.object.id, message_id: f.object.id), method: :put%>
+
         </div>
 
         <div class="col-xs-offset-2 col-xs-4">
@@ -115,11 +117,10 @@
            </div>
         </div>
       </section>
-    <br>
-      <%= link_to button_tag('Enviar ahora', class: 'btn btn-primary'), relationship_message_now_path(relationship_id: rel.object.id, message_id: f.object.id), method: :put%>
-
-      <%= link_to button_tag('Eliminar contacto', class: 'btn btn-danger'), relationships_path(relationship_id: rel.object.id), method: :delete%> 
-
+         
+      <section class="margin-bottom">
+      <%= link_to 'Eliminar contacto',relationships_path(relationship_id: rel.object.id), method: :delete, id:"love", class:"margin-bottom"%> 
+      </section>
       <% end %>
     <% end %>  
     <!-- Here is closed the accordion -->
@@ -127,15 +128,15 @@
       </div>
     </div>
     <!-- Up to here -->
-    </section>
     <% end %>
     <div class="row max-space" >
       <div class="col-xs-9 max-height">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_modal">Añadir contacto</button>
       </div>
-      <div class="col-xs-9 max-height">
+
+      <div class="col-xs-3 max-height right">
         <%=link_to user_messages_path(user_id: user.object.id), method: :put do %> 
-              <button type="button" class="btn btn-primary">Enviar a todos</button>
+              <button type="button" class="btn btn-success right">Enviar a todos</button>
           <% end %>
       </div>      
       <% if tw_status %>

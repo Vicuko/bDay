@@ -29,12 +29,15 @@
     </div>
   </div>
   <div class="col-xs-8 no-padding">
-      <p class="right no-margin">Don't have an account yet?</p><br>
+      <p class="right sign-margin-left sign-text">Don't have an account yet?<br>
       <% if devise_mapping.registerable? && controller_name != 'registrations' %>
-        <%= link_to "Sign up", new_registration_path(resource_name), class:"right" %><br />
+        <%= link_to "Sign up", new_registration_path(resource_name), class:"right sign-text" %>
       <% end -%>
+      </p>
+  </div>
+  <div class="col-xs-12 no-padding right">
       <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-    <%= link_to "Forgot your password?", new_password_path(resource_name), class:"right" %><br />
+    <%= link_to "Forgot your password?", new_password_path(resource_name), class:"right sign-text" %>
   <% end -%>
   </div>
 </div>

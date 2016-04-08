@@ -30,11 +30,11 @@
 
   <div class="row max-width no-margin">
     <div class="col-xs-8 no-padding">
-      <p class="right no-margin">Already have an account?</p><br>
+      <p class="left no-margin sign-text">Already have an account?</p><br>
       <%- if controller_name != 'sessions' %>
-        <div class="col-xs-offset-1 col-xs-11 no-padding">
-        <%= link_to "Sign in", new_session_path(resource_name), class:"left" %>
-        </div>
+        
+        <%= link_to "Sign in", new_session_path(resource_name), class:"left sign-text" %>
+        
       <% end -%>
     </div>
     <div class="col-xs-4 right no-padding">

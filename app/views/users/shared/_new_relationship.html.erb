@@ -13,17 +13,20 @@
       <div class="modal-body">
         <%= form_for(@relationship, url: relationships_path(@relationship), html: { method: :post }) do |rel| %>
 
-        <section>
+        <section class="modal-max-width">
 
-          <%= rel.label :Nombre %>
-              <%= rel.text_field :nickname, autofocus: true %>        
-          <br>
-          <%= rel.label :Email %>
-              <%= rel.text_field :email, autofocus: true %>
-          <br>
-              <%= rel.label :Cumpleaños %>
+          <div class="form-group form-group-sm margin-bottom">
+          <%= rel.label :"Nombre :", class:"form-text-label" %>
+              <%= rel.text_field :nickname, autofocus: true, class:"form-control form-text-input" %>        
+          </div>
+          <div class="form-group form-group-sm margin-bottom">
+          <%= rel.label :"Email :", class:"form-text-label" %>
+              <%= rel.text_field :email, autofocus: true, class:"form-control form-text-input" %>
+          </div>
+          <div class="form-group form-group-sm margin-bottom">
+              <%= rel.label :"Cumpleaños :", class:"form-text-label" %>
                <%= rel.date_select :send_date, discard_year:true, autofocus: true %>
-
+          </div>
         </section>      
         
       </div><!-- .modal-body -->

@@ -12,15 +12,15 @@
 
       <div class="modal-body">
       <%= form_for(@relationship, url: relationships_path(), html: { method: :put, class:"edit-form" }) do |rel| %>
-
+        <section class="modal-max-width">
         
-          <div class="col-xs-3">
+          <div class="col-xs-2">
             <%=image_tag("", class:"img-circle img-responsive avatar-img edit-img") %>
           </div>
            
-          <div class="col-xs-9 no-padding-left left">
+          <div class="col-xs-8 no-padding-left left">
             <h4 class:"max-width">
-              <%=rel.text_field :nickname, class:"edit-nickname"%>
+              <%=rel.text_field :nickname, class:"edit-nickname form-control form-text-input"%>
             </h4>
           </div>
       
@@ -28,7 +28,7 @@
 
             <div class="col-xs-12 left margin-top">
               <span class="info-label"><%= rel.label :"Email :" %></span>
-              <span class="info-field"><%= rel.text_field :email, autofocus: true, class:"edit-email"%></span>
+              <span class="info-field"><%= rel.text_field :email, autofocus: true, class:"edit-email form-control form-text-input"%></span>
             </div>
             <div class="col-xs-12 left">
               <span class="info-label"><%= rel.label :"Bday :" %></span>
@@ -58,14 +58,15 @@
                 <%= f.text_area :message, class: "form-control edit-message", rows:"3",  autofocus: true %>
               </div>
               
-              <div class="col-xs-offset-2 col-xs-4">
-                <div class="right">
+              <div class="col-xs-4 left">
+                <div class="left">
                   <%= rel.check_box :send_message, class: "checkbox_inline edit-send"%>
                   <span class="info-label">Enviar</span>
                 </div>
               </div>
 
             <% end %>
+            </section>
           
       </div><!-- .modal-body -->
       <div class="modal-footer">

@@ -20,11 +20,15 @@
 <body class="max-space">
 		<%= render partial: "/shared/topbar"%>
 		<%= render partial: "/shared/notifications"%>
-	<section class="container-fluid">
-		<%= yield %>
-		<%= render partial: "/shared/footer"%>
-	</section>
-
+	<div class="container-fluid">
+		<div class="col-sm-1 col-md-2 col-lg-3"></div>
+		<section class="col-xs-12 col-sm-10 col-md-8 col-lg-6">
+			<%= yield %>
+		</section>
+	</div>
+	
+	<div class="col-xs-12 no-padding footer-correct">
+	<%= render partial: "/shared/footer"%>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 </body>
